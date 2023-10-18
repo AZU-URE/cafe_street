@@ -1,7 +1,7 @@
 import Image from "next/image";
 export default function Hero() {
   return (
-    <div className="min-h-fit min-w-screen bg-background flex items-center justify-between">
+    <div className="min-h-fit min-w-screen bg-background flex items-center justify-between pb-10">
       <div className="mt-40 ">
         <div className="flex flex-col items-start justify-around space-y-10 mb-16 pl-52">
           <h1 className="text-5xl font-poppins font-semibold text-secondary">

@@ -21,6 +21,7 @@ const config: Config = {
         accents: "#F9D9AA",
         light: "#7E7D7A",
         glass: "#FFFFFF",
+        chrome: "#F4AE26",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
