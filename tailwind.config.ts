@@ -22,6 +22,8 @@ const config: Config = {
         light: "#7E7D7A",
         glass: "#FFFFFF",
         chrome: "#F4AE26",
+        feedbackCard: "#FFCB7C",
+        feedbackCardBorder: "#FFD390",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

@@ -2,13 +2,13 @@ import Image from "next/image";
 export default function HowTo() {
   return (
     <div className="flex flex-col my-52">
-      <p className="text-4xl font-poppins font-semibold pl-52">
+      <div className="text-4xl font-poppins font-semibold pl-52">
         How to use delivery
         <div className="flex-col items-center inline-flex pl-2">
           <p>service</p>
-          <div className="rounded bg-primary min-h-[4px] w-full" />
+          <div className="rounded bg-primary min-h-[4px] w-full"></div>
         </div>
-      </p>
+      </div>
       <div className="flex justify-evenly items-center mt-10">
         <div className="flex flex-col items-center justify-evenly">
           <div className="relative min-w-[159px] min-h-[159px] mb-10">

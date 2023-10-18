@@ -1,0 +1,53 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Sandwich",
+      "price": "12",
+      "detail": "bread with meat and vegetables",
+      "pic": "menu/item1.svg"
+    },
+    {
+      "id": 2,
+      "name": "Hot Milk",
+      "price": "12",
+      "detail": "Hot Milk with less sugar",
+      "pic": "menu/item2.svg"
+    },
+    {
+      "id": 3,
+      "name": "Coffe Ice Cream",
+      "price": "12",
+      "detail": "Coffe with ice cream vanilla",
+      "pic": "menu/item3.svg"
+    },
+    {
+      "id": 4,
+      "name": "Cappucino",
+      "price": "12",
+      "detail": "Hot Cappucino",
+      "pic": "menu/item4.svg"
+    },
+    {
+      "id": 5,
+      "name": "Moccacinno",
+      "price": "12",
+      "detail": "Hot Moccacino ",
+      "pic": "menu/item5.svg"
+    },
+    {
+      "id": 6,
+      "name": "Waffle Ice Crem",
+      "price": "12",
+      "detail": "Wafle with Ice cream",
+      "pic": "menu/item6.svg"
+    }
+  ],
+  "feedbacks": [
+    {
+      "id": 1,
+      "name": "Naura",
+      "feedback": "I really love the cappucino, the coffee was very smooth."
+    }
+  ]
+}

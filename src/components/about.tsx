@@ -1,7 +1,7 @@
 import Image from "next/image";
 export default function About() {
   return (
-    <div className="flex items-center justify-evenly py-[84px] relative bg-background">
+    <div className="flex items-center justify-evenly py-[84px] relative bg-background pl-32">
       <Image
         src="/aboutUs_excludeBg.png"
         fill={true}
@@ -20,13 +20,13 @@ export default function About() {
         </div>
       </div>
       <div className="w-[50%] flex flex-col items-start space-y-6">
-        <p className="text-3xl font-poppins font-semibold">
+        <div className="text-3xl font-poppins font-semibold">
           About
           <div className="flex-col items-center inline-flex pl-2">
             <p>us</p>
-            <div className="rounded bg-primary min-h-[4px] w-full" />
+            <div className="rounded bg-primary min-h-[4px] w-full"></div>
           </div>
-        </p>
+        </div>
 
         <p className="font-poppins font-semibold text-2xl">
           We provide quality coffee,
