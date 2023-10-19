@@ -19,8 +19,8 @@ export default function Newsletter() {
             className="w-full rounded-full p-4 font-poppins font-semibold"
             placeholder="Email address"
           />
-          <button className="px-3 w-[150px] absolute p-2 top-2 right-12 -mr-10 rounded-full bg-secondary text-white font-semibold flex items-center justify-center">
-            Order now
+          <button className="px-5 absolute p-2 top-2 right-12 -mr-10 rounded-full bg-secondary text-white font-semibold flex items-center justify-center">
+            Subscribe
           </button>
         </div>
       </div>

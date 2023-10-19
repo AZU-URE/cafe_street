@@ -1,11 +1,11 @@
 "use client";
 import Navbar from "@/components/navbar";
-import Hero from "@/components/hero";
-import HowTo from "@/components/howTo";
-import About from "@/components/about";
-import Menu from "@/components/menu";
-import Testimonial from "@/components/testimonial";
-import Newsletter from "@/components/newsletter";
+import Hero from "@/components/landingPage/hero";
+import HowTo from "@/components/landingPage/howTo";
+import About from "@/components/landingPage/about";
+import Menu from "@/components/landingPage/menu";
+import Testimonial from "@/components/landingPage/testimonial";
+import Newsletter from "@/components/landingPage/newsletter";
 export default function home() {
   return (
     <div className="">

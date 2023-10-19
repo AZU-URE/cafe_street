@@ -1,13 +1,10 @@
 import Image from "next/image";
 export default function About() {
   return (
-    <div className="flex items-center justify-evenly py-[84px] relative bg-background pl-32">
-      <Image
-        src="/aboutUs_excludeBg.png"
-        fill={true}
-        alt="background"
-        className="opacity-10"
-      />
+    <div
+      className="flex items-center justify-evenly py-[84px] relative bg-background pl-32 bg-blend-overlay"
+      style={{ backgroundImage: `url(/aboutUs_excludeBg.svg)` }}
+    >
       <div className="w-[50%] flex items-center justify-center ">
         <div className="py-2 px-2 bg-contain absolute bottom-16 rounded-xl bg-light bg-opacity-40 backdrop-blur-2xl shadow-2xl">
           <Image
