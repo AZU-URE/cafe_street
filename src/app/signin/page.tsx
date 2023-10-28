@@ -1,14 +1,47 @@
 "use client";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
+
+interface FormInput {
+  email: String;
+  password: String;
+}
 export default function signin() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormInput>();
+
   const [passwordVisible, setVisibility] = useState(false);
   const toggleEye = () => {
     setVisibility((current) => !current);
   };
+  const onSignin: SubmitHandler<FormInput> = async (data) => {
+    try {
+      const body = {
+        email: data.email,
+        password: data.password,
+      };
+      // console.log(body);
+      const response = await axios.post("api/user/signin", body);
+      // console.log(response);
+      if (response?.data?.message) {
+        toast.success(response?.data?.message);
+      } else if (response?.data?.error) {
+        toast.error(response?.data?.error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="flex flex-row-reverse items-center w-full min-h-screen">
+      <Toaster />
       <div
         className="relative w-3/4 min-h-screen bg-cover bg-no-repeat bg-center"
         style={{ backgroundImage: `url(/login.jpg)` }}
@@ -76,18 +109,33 @@ export default function signin() {
             </div>
           </div>
           <div className="w-full">
-            <form className=" flex flex-col items-center justify-around space-y-5 w-full text-sm">
+            <form
+              onSubmit={handleSubmit(onSignin)}
+              className=" flex flex-col items-center justify-around space-y-5 w-full text-sm"
+            >
               <input
                 type="email"
                 placeholder="Email Address"
                 className="w-full p-4 border-2 border-light rounded-lg"
+                {...register("email", {
+                  required: "This field is required",
+                })}
               />
+              <p className="mt-1 font-poppins font-semibold text-red-500">
+                {errors?.email && errors?.email?.message}
+              </p>
               <div className="relative w-full">
                 <input
                   type={passwordVisible ? "text" : "password"}
                   placeholder="Password"
                   className="w-full p-4 border-2 border-light rounded-lg"
+                  {...register("password", {
+                    required: "This field is required",
+                  })}
                 />
+                <p className="mt-1 font-poppins font-semibold text-red-500">
+                  {errors?.password && errors?.password?.message}
+                </p>
                 <button
                   className="absolute inset-y-0 right-0 flex items-center px-4 text-light"
                   onClick={toggleEye}
@@ -125,7 +173,7 @@ export default function signin() {
               </div>
               <button
                 type="submit"
-                className="w-full p-3 bg-light/10 font-semibold border-2 border-primary rounded-lg"
+                className="w-full p-3 bg-light/10 font-semibold border-2 border-light rounded-lg"
               >
                 Sign In
               </button>

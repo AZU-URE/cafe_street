@@ -16,6 +16,7 @@ model User {
  name String 
  type UserType @default(CUSTOMER)
  password String 
+ contact String
  Token String?
  tokenExpiresAt DateTime?
  isVerified Boolean @default(false)
