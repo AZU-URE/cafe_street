@@ -14,15 +14,22 @@ model User {
  id String @id @map("_id") @default(auto()) @db.ObjectId
  email String @unique
  name String 
- type UserType @default(CUSTOMER)
+ role UserType @default(CUSTOMER)
  password String 
  contact String
- Token String?
+ token String?
  tokenExpiresAt DateTime?
  isVerified Boolean @default(false)
  createdAt DateTime @default(now())
  pastOrders Order[]
  feedbacks Feedback[]
+ session Session? 
+}
+
+model Session {
+  jwtToken String @id @map("_id") @db.ObjectId
+  userId String @db.ObjectId @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Order{

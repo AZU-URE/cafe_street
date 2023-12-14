@@ -2,15 +2,17 @@
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface FormInput {
   email: String;
   password: String;
 }
 export default function signin() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -32,6 +34,7 @@ export default function signin() {
       // console.log(response);
       if (response?.data?.message) {
         toast.success(response?.data?.message);
+        router.push("/menu");
       } else if (response?.data?.error) {
         toast.error(response?.data?.error);
       }
@@ -39,6 +42,8 @@ export default function signin() {
       console.log(error);
     }
   };
+
+  const onClickGoogle = async () => {};
   return (
     <div className="flex flex-row-reverse items-center w-full min-h-screen">
       <Toaster />
