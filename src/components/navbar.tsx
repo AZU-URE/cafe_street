@@ -2,9 +2,11 @@ import { url } from "inspector";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession, signIn, signOut } from "next-auth/react";
 export default function Navbar() {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const { data: session } = useSession();
   const clickSignin = () => {
     router.push("/signin");
   };
@@ -41,15 +43,19 @@ export default function Navbar() {
             style={{ backgroundColor: "rgb(255,144,43)", borderRadius: "100%" }}
             className="hover:cursor-pointer "
           />
+        ) : session ? (
+          <button onClick={() => signOut()}>Sign out</button>
         ) : (
-          <button
-            onClick={clickSignin}
-            className=" font-poppins tracking-wide text-white bg-secondary rounded-full p-2 px-5 flex items-center justify-center"
-          >
-            SignIn
-          </button>
+          <button onClick={() => signIn()}>Sign in</button>
         )}
       </div>
     </nav>
   );
 }
+
+// <button
+//   onClick={clickSignin}
+//   className=" font-poppins tracking-wide text-white bg-secondary rounded-full p-2 px-5 flex items-center justify-center"
+// >
+//   SignIn
+// </button>

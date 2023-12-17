@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import AuthButton from "@/components/AuthButton";
 
 interface FormInput {
   name: String;
@@ -95,28 +96,8 @@ export default function signup() {
             <p className="text-light">Get coffee at your doorsteps</p>
           </div>
           <div className="flex flex-col w-full items-center">
-            <div className="flex mb-1 space-x-5 w-full items-center justify-center">
-              <button className="rounded-md bg-feedbackCardBorder/40 py-2 px-6 border-2 border-light font-semibold text-sm flex items-center justify-evenly">
-                <Image
-                  src="/google.png"
-                  height={20}
-                  width={20}
-                  alt="google"
-                  className="mr-2"
-                />
-                Google
-              </button>
-              <button className="rounded-md bg-feedbackCardBorder/40 py-2 px-6 border-2 border-light font-semibold text-sm flex items-center justify-evenly">
-                <Image
-                  src="/twitter.png"
-                  height={20}
-                  width={20}
-                  alt="google"
-                  className="mr-2"
-                />
-                Twitter
-              </button>
-            </div>
+            {/* auth button component */}
+            <AuthButton />
             <div className="flex w-full items-center justify-center">
               <div className=" bg-light w-full h-[1px] rounded" />
               {/* <hr /> */}
