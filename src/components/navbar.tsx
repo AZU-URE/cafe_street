@@ -6,7 +6,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function Navbar() {
   const router = useRouter();
   const [user, setUser] = useState(null);
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const clickSignin = () => {
     router.push("/signin");
   };
@@ -43,10 +43,15 @@ export default function Navbar() {
             style={{ backgroundColor: "rgb(255,144,43)", borderRadius: "100%" }}
             className="hover:cursor-pointer "
           />
-        ) : session ? (
+        ) : user ? (
           <button onClick={() => signOut()}>Sign out</button>
         ) : (
-          <button onClick={() => signIn()}>Sign in</button>
+          <button
+            onClick={clickSignin}
+            className="font-poppins tracking-wide text-white bg-secondary rounded-full p-2 px-5 flex items-center justify-center"
+          >
+            Sign in
+          </button>
         )}
       </div>
     </nav>

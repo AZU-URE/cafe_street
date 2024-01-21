@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AuthProvider from "@/context/AuthProvider";
-import { SessionProvider } from "next-auth/react";
+import { NextAuthProvider } from "@/contextProvider/authProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,11 +20,9 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
-      <SessionProvider>
-        <AuthProvider>
-          <body className={inter.className}>{children}</body>
-        </AuthProvider>
-      </SessionProvider>
+      <NextAuthProvider>
+        <body className={inter.className}>{children}</body>
+      </NextAuthProvider>
     </html>
   );
 }
