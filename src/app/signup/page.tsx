@@ -3,21 +3,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
 import AuthButton from "@/components/AuthButton";
+import { createClient } from "@/utils/client";
+import { toast, Toaster } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 interface FormInput {
-  name: String;
-  contact: String;
-  email: String;
-  password: String;
-  passwordRe: String;
+  name: string;
+  contact: string;
+  email: string;
+  password: string;
+  passwordRe: string;
 }
 export default function signup() {
   const [passwordVisible, setVisibility] = useState(false);
   const [message, setMessage] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const supabase = createClient();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -39,23 +42,39 @@ export default function signup() {
     }
   }, [getValues("passwordRe"), getValues("password")]);
 
-  const onSignup: SubmitHandler<FormInput> = async (data) => {
+  const onSignup: SubmitHandler<FormInput> = async (userdata) => {
     try {
       setLoading(true);
-      const body = {
-        name: data.name,
-        contact: data.contact,
-        email: data.email,
-        password: data.password,
-      };
-      console.log(body);
-
-      const response = await axios.post("api/user/signup", body);
-      console.log(response);
-      toast.success(response?.data?.message);
+      const { data, error } = await supabase.auth.signUp({
+        email: userdata.email,
+        password: userdata.password,
+        options: {
+          data: {
+            name: userdata.name,
+            contactNum: userdata.contact,
+          },
+        },
+      });
+      if (data) {
+        console.log(data);
+        if (data.user) {
+          const { error } = await supabase.from("user").insert({
+            id: data.user.id,
+            created_at: data.user.created_at,
+            name: userdata.name,
+            contact: userdata.contact,
+            email: userdata.email,
+          });
+          if (error) console.log(error);
+        }
+        toast.success("user created successfully");
+        router.push("/signin");
+      } else {
+        console.log(error);
+      }
     } catch (error: any) {
       console.log(error.message);
-      toast.error(error?.message);
+      // toast.error(error?.message);
     } finally {
       setLoading(false);
     }

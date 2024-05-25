@@ -16,7 +16,7 @@ type User = {
   createdAt: Date;
 } | null;
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest, response: NextResponse) {
   try {
     const body = await request.json();
     const { email, password } = body;
@@ -37,29 +37,21 @@ export async function POST(request: NextRequest) {
     }
     // Generate JWT token here and send it to the client side for authentication
 
-    // const token = jwt.sign(
-    //   { name: user.name, email: user.email },
-    //   process.env.TOKEN_SECRET!,
-    //   {
-    //     expiresIn: "1d",
-    //   }
-    // );
-
-    // const newSession = await prisma.session.create({
-    //   data: {
-    //     jwtToken: token,
-    //     userId: user.id,
-    //     user: {
-    //       // id: user.id,
-    //     },
-    //   },
-    // });
-    // console.log(newSession);
-
-    const response = NextResponse.json({ message: "User Signed In" });
-    // response.cookies.set("token", token, {
-    //   httpOnly: true,
-    // });
+    const token = jwt.sign(
+      { name: user.name, email: user.email },
+      process.env.TOKEN_SECRET!,
+      {
+        expiresIn: "1d",
+      }
+    );
+    // const currTime = new Date(z);
+    // console.log(currTime);
+    // console.log(currTime + 24 * 1000 * 60 * 60);
+    const response = NextResponse.json({
+      message: "User Signed In",
+      data: { userId: user.id, user: user, token: token },
+      status: 200,
+    });
     return response;
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

@@ -6,7 +6,6 @@ import About from "@/components/landingPage/about";
 import Menu from "@/components/landingPage/menu";
 import Testimonial from "@/components/landingPage/testimonial";
 import Newsletter from "@/components/landingPage/newsletter";
-import { SessionProvider } from "next-auth/react";
 export default function home() {
   return (
     <div className="">

@@ -1,11 +1,20 @@
 "use client";
+import { createContext, useState } from "react";
 
-import { SessionProvider } from "next-auth/react";
+interface IUserContext {
+  user: String | null;
+  setUser: (user: string) => void;
+}
+export const AuthContext = createContext<IUserContext>({
+  user: null,
+  setUser: () => {},
+});
 
-type Props = {
-  children?: React.ReactNode;
-};
-
-export const NextAuthProvider = ({ children }: Props) => {
-  return <SessionProvider>{children}</SessionProvider>;
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<string | null>(null);
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
