@@ -6,6 +6,8 @@ import { useReducer, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import AuthButton from "@/components/AuthButton";
+import { createClient } from "@/utils/client";
 
 interface FormInput {
   email: String;
@@ -13,6 +15,9 @@ interface FormInput {
 }
 export default function signin() {
   const router = useRouter();
+  const supabase = createClient();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const {
     register,
     handleSubmit,
@@ -23,20 +28,19 @@ export default function signin() {
   const toggleEye = () => {
     setVisibility((current) => !current);
   };
-  const onSignin: SubmitHandler<FormInput> = async (data) => {
+  const onSignin: any = async () => {
     try {
-      const body = {
-        email: data.email,
-        password: data.password,
-      };
-      // console.log(body);
-      const response = await axios.post("api/user/signin", body);
-      // console.log(response);
-      if (response?.data?.message) {
-        toast.success(response?.data?.message);
-        router.push("/menu");
-      } else if (response?.data?.error) {
-        toast.error(response?.data?.error);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+      if (error) {
+        console.log(error);
+        toast.error("Some error occured");
+      } else {
+        console.log(data);
+        toast.success("Logged in successfully");
+        router.push("/");
       }
     } catch (error) {
       console.log(error);
@@ -66,7 +70,7 @@ export default function signin() {
           <div className="w-full text-secondary text-right font-poppins">
             Don't have an Account ?
             <div className="flex-col items-center inline-flex pl-2">
-              <Link href={`/signup`} className="font-semibold">
+              <Link href={`./signup`} className="font-semibold">
                 Sign Up
               </Link>
               <div className="rounded bg-primary min-h-[4px] w-full"></div>
@@ -83,28 +87,7 @@ export default function signin() {
             <p className="text-light">login and order a quick refill</p>
           </div>
           <div className="flex flex-col w-full items-center">
-            <div className="flex mb-1 space-x-5 w-full items-center justify-center">
-              <button className="rounded-md bg-feedbackCardBorder/40 py-2 px-6 border-2 border-light font-semibold text-sm flex items-center justify-evenly">
-                <Image
-                  src="/google.png"
-                  height={20}
-                  width={20}
-                  alt="google"
-                  className="mr-2"
-                />
-                Google
-              </button>
-              <button className="rounded-md bg-feedbackCardBorder/40 py-2 px-6 border-2 border-light font-semibold text-sm flex items-center justify-evenly">
-                <Image
-                  src="/twitter.png"
-                  height={20}
-                  width={20}
-                  alt="google"
-                  className="mr-2"
-                />
-                Twitter
-              </button>
-            </div>
+            <AuthButton />
             <div className="flex w-full items-center justify-center">
               <div className=" bg-light w-full h-[1px] rounded" />
               {/* <hr /> */}
@@ -122,9 +105,8 @@ export default function signin() {
                 type="email"
                 placeholder="Email Address"
                 className="w-full p-4 border-2 border-light rounded-lg"
-                {...register("email", {
-                  required: "This field is required",
-                })}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <p className="mt-1 font-poppins font-semibold text-red-500">
                 {errors?.email && errors?.email?.message}
@@ -134,9 +116,8 @@ export default function signin() {
                   type={passwordVisible ? "text" : "password"}
                   placeholder="Password"
                   className="w-full p-4 border-2 border-light rounded-lg"
-                  {...register("password", {
-                    required: "This field is required",
-                  })}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <p className="mt-1 font-poppins font-semibold text-red-500">
                   {errors?.password && errors?.password?.message}
@@ -179,6 +160,7 @@ export default function signin() {
               <button
                 type="submit"
                 className="w-full p-3 bg-light/10 font-semibold border-2 border-light rounded-lg"
+                onClick={onSignin}
               >
                 Sign In
               </button>
