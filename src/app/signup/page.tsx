@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/client";
 import { toast, Toaster } from "react-hot-toast";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface FormInput {
   name: string;
