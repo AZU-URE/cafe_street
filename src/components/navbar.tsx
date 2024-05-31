@@ -2,7 +2,23 @@ import { url } from "inspector";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/utils/client";
+import { useEffect } from "react";
 export default function Navbar() {
+  const supabase = createClient();
+
+  useEffect(() => {
+    async function getUser() {
+      console.log("user from navbar");
+
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      console.log(user);
+    }
+    getUser();
+  }, []);
+
   const router = useRouter();
   return (
     <nav className=" flex items-center justify-evenly bg-transparent absolute p-6 w-full z-10">
