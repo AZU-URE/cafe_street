@@ -4,16 +4,16 @@ import FeedbackCard from "./feedbackCard";
 export default function Testimonial() {
   const feedbacks = details.feedbacks;
   return (
-    <div className="w-2/3 flex items-center bg-no-repeat bg-background rounded-r-2xl">
+    <div className="lg:w-2/3 w-full flex lg:flex-row flex-col items-center bg-no-repeat bg-background rounded-r-2xl lg:pb-0 pb-[3rem]">
       <div
         className="relative w-full flex items-center justify-start rounded-r-2xl bg-blend-overlay bg-background"
         style={{ backgroundImage: `url(/aboutUs_excludeBg.svg)` }}
       >
-        <div className="flex flex-col pl-52 py-32">
+        <div className="flex flex-col  w-full lg:pl-52 lg:py-32 py-[3rem] lg:text-left text-center">
           <p className="font-poppins font-semibold text-3xl mb-6">
             What they say about us
           </p>
-          <p className="text-lg font-poppins text-light w-1/2">
+          <p className="md:text-lg text-base font-poppins text-light lg:w-1/2 ">
             We always provide the best service and always maintain the quality
             of coffee.
           </p>
@@ -25,7 +25,7 @@ export default function Testimonial() {
           fill={true}
         /> */}
       </div>
-      <div className="absolute right-20 grid grid-cols-2 gap-40 mx-10 ">
+      <div className=" lg:absolute lg:right-20 grid md:grid-cols-2 grid-cols-1 lg:gap-40 gap-36 lg:mx-10 ">
         <FeedbackCard />
         <FeedbackCard />
         {/* <FeedbackCard /> */}
