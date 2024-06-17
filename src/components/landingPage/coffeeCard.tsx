@@ -20,15 +20,16 @@ export default function CoffeeCard({ name, price, detail, pic }: details) {
       </div>
       <div className="flex flex-col">
         <div className="flex items-center justify-between mb-3">
-          <p className="font-semibold font-poppins text-2xl text-secondary">
+          <p className="font-semibold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
             {name}
           </p>
-          <p className="font-bold font-poppins text-2xl text-secondary">
-            {price} K
+          <p className="font-bold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
+            {price}
+            <span className="pl-1">K</span>
           </p>
         </div>
         <div className="flex items-center justify-between">
-          <p className="w-[146px] font-semibold font-poppins text-sm text-light">
+          <p className="w-[146px] font-semibold font-poppins md:text-sm text-xs text-light">
             {detail}
           </p>
           <div className="bg-primary h-[43px] w-[43px] p-1 rounded-full flex items-center justify-center ">

@@ -27,21 +27,16 @@ export default function Newsletter() {
   };
 
   return (
-    <div className=" px-52 py-32 w-full h-[500] relative flex items-center justify-center">
-      <Image
-        width={1170}
-        height={392}
-        src="/newsletter.svg"
-        alt="newseletter"
-      />
+    <div className=" lg:px-52 lg:py-32 md:p-[3rem] p-[1rem] w-full h-[500] relative flex items-center justify-center">
+      <img width={1170} height={392} src="/newsletter.svg" alt="newseletter" />
       <div className="absolute flex flex-col">
-        <p className="text-white font-semibold font-poppins text-3xl">
+        <p className="text-white font-semibold font-poppins md:text-3xl text-lg">
           Subscribe to get 50% discount price
         </p>
         <div className="mx-10 mt-10 flex items-center relative ">
           <input
             type="text"
-            className="w-full rounded-full p-4 font-poppins font-semibold"
+            className="w-full rounded-full md:p-4 p-2 font-poppins font-semibold md:text-base text-xs "
             placeholder="Email address"
             value={email}
             onChange={(e) => {
@@ -51,7 +46,7 @@ export default function Newsletter() {
           />
           <button
             onClick={subscribe}
-            className="px-5 absolute p-2 top-2 right-12 -mr-10 rounded-full bg-secondary text-white font-semibold flex items-center justify-center"
+            className="md:text-base text-[10px] md:px-5 px-3 absolute md:p-2 p-1 md:top-2 top-1 right-12 -mr-10 rounded-full bg-secondary text-white font-semibold flex items-center justify-center"
           >
             {message}
           </button>
