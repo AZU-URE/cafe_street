@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "@/components/navbar";
 import Hero from "@/components/landingPage/hero";
 import HowTo from "@/components/landingPage/howTo";
 import About from "@/components/landingPage/about";
@@ -9,7 +8,6 @@ import Newsletter from "@/components/landingPage/newsletter";
 export default function home() {
   return (
     <div className="">
-      <Navbar />
       <Hero />
       <HowTo />
       <About />
