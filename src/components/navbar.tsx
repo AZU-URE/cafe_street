@@ -64,6 +64,7 @@ export default function Navbar() {
                 height={32}
                 width={32}
                 className="hover:cursor-pointer"
+                onClick={() => router.push("/menu/cart")}
               />
               <Avatar
                 src="/profile.png"
@@ -72,7 +73,7 @@ export default function Navbar() {
                 className="cursor-pointer"
               ></Avatar>
               <Avatar
-                className="bg-primary p-2"
+                className="bg-primary p-2 cursor-pointer"
                 sx={{ width: 32, height: 32 }}
                 onClick={signout}
               >
