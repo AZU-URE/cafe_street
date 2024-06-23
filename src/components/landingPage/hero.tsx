@@ -31,7 +31,7 @@ export default function Hero() {
         <img src="/beans_bg.svg" alt="beans image" className="lg:flex hidden" />
       </div>
       <div className="lg:-mt-16 lg:pr-52 md:flex hidden w-full lg:scale-100 scale-[0.65] md:mt-5">
-        <div className="bg-secondary rounded-full lg:h-[28rem] lg:w-[28rem] md:h-[23rem] md:w-[23rem] flex flex-col items-center justify-center z-10 relative ">
+        <div className="bg-secondary rounded-full md:h-[23rem] md:w-[23rem] flex flex-col items-center justify-center z-10 relative ">
           <img
             className="absolute"
             src="/Exclude_coffee_mug_hero.png"

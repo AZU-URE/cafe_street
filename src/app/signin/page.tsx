@@ -40,7 +40,7 @@ export default function signin() {
       } else {
         console.log(data);
         toast.success("Logged in successfully");
-        router.push("/");
+        router.push("/menu");
       }
     } catch (error) {
       console.log(error);

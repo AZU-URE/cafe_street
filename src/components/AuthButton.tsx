@@ -8,7 +8,7 @@ export default function AuthButton() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider,
       options: {
-        redirectTo: `http://example.com/auth/callback`,
+        redirectTo: `http://localhost:3000/menu`,
       },
     });
     if (data) {
