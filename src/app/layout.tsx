@@ -7,7 +7,6 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Navbar from "@/components/navbar";
 const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "Cafe Street",
   description: "Created By Garima Mangal",
@@ -24,10 +23,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
-      <body className={inter.className}>
-        <Navbar />
-        {children}`
-      </body>
+      <body className={inter.className}>{children}`</body>
     </html>
   );
 }

@@ -5,9 +5,11 @@ import About from "@/components/landingPage/about";
 import Menu from "@/components/landingPage/menu";
 import Testimonial from "@/components/landingPage/testimonial";
 import Newsletter from "@/components/landingPage/newsletter";
+import Navbar from "@/components/navbar";
 export default function home() {
   return (
     <div className="">
+      <Navbar />
       <Hero />
       <HowTo />
       <About />
