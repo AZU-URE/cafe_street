@@ -7,6 +7,7 @@ import Testimonial from "@/components/landingPage/testimonial";
 import Newsletter from "@/components/landingPage/newsletter";
 import Navbar from "@/components/navbar";
 export default function home() {
+  // console.log(window.location.origin);
   return (
     <div className="">
       <Navbar />
