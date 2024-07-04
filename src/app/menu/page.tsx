@@ -3,6 +3,7 @@ import { Breadcrumbs, Link, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import Filter from "@/components/Filter";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import FoodCategoryCarousel from "@/components/FoodCategoryCarousel";
 export default function () {
   const [searchParam, setSearchParam] = useState("All");
   const breadcrumbs = [
@@ -50,7 +51,9 @@ export default function () {
           </div>
           <Filter />
         </div>
-        <div>for menu</div>
+        <div className="flex items-center justify-between flex-col w-3/4 m-[2rem]">
+          <FoodCategoryCarousel />
+        </div>
       </div>
     </div>
   );
