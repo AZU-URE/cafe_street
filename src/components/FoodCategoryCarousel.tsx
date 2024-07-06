@@ -13,7 +13,7 @@ export default function FoodCategoryCarousel() {
     responsive: [],
   };
   return (
-    <div className="w-full px-10 h-fit overflow-hidden">
+    <div className="w-full px-10 h-fit overflow-hidden ">
       <Slider {...settings}>
         <div className="p-3 mx-3">
           <img
@@ -108,8 +108,4 @@ function SamplePrevArrow(props: any) {
       onClick={onClick}
     />
   );
-}
-
-function foodCard() {
-  return <div>hii</div>;
 }

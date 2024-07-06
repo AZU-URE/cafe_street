@@ -72,13 +72,13 @@ export default function Navbar() {
                 onClick={() => router.push("/menu")}
                 className="cursor-pointer"
               ></Avatar>
-              <Avatar
-                className="bg-primary p-2 cursor-pointer"
-                sx={{ width: 32, height: 32 }}
+              <div
+                className="bg-primary p-2 cursor-pointer rounded-full flex items-center text-white"
+                style={{ width: 32, height: 32 }}
                 onClick={signout}
               >
                 <LogoutIcon sx={{ width: 20, height: 20 }} />
-              </Avatar>
+              </div>
             </div>
           ) : (
             <div className="flex items-center space-x-6">
