@@ -2,16 +2,16 @@ import Image from "next/image";
 
 type details = {
   name: string;
-  price: string;
+  price: number;
   detail: string;
-  pic: number;
+  pic: string;
 };
 export default function CoffeeCard({ name, price, detail, pic }: details) {
   return (
-    <div className=" p-6 rounded-lg shadow-2xl shadow-gray-600">
+    <div className="bg-feedbackCardBorder/60 hover:bg-feedbackCard/90 p-6 rounded-lg hover:shadow-2xl hover:shadow-gray-600 hover:scale-105">
       <div className="flex items-center justify-center mb-5">
         <Image
-          src={`/${pic}`}
+          src={`${pic}`}
           height={226}
           width={307}
           alt="item1"

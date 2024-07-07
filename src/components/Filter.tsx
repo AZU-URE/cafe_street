@@ -64,11 +64,7 @@ export default function Filter() {
         </Button>
       </div>
       <Accordion className="bg-background">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
-        >
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className=" text-secondary/90 font-medium text-lg">
             Rating
           </Typography>
@@ -81,11 +77,7 @@ export default function Filter() {
         </AccordionDetails>
       </Accordion>
       <Accordion className="bg-background">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
-        >
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className=" text-secondary/90 font-medium text-lg">
             Price Range
           </Typography>
@@ -98,11 +90,7 @@ export default function Filter() {
         </AccordionDetails>
       </Accordion>
       <Accordion className="bg-background">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
-        >
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className=" text-secondary/90 font-medium text-lg">
             Category
           </Typography>

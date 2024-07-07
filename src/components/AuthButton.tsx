@@ -5,10 +5,11 @@ export default function AuthButton() {
 
   const onclickGoogle = async (provider: any) => {
     console.log(provider);
+
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider,
       options: {
-        redirectTo: `${window.location.origin}/menu`,
+        redirectTo: `/menu`,
       },
     });
     if (data) {
