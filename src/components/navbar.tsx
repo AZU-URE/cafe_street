@@ -14,7 +14,7 @@ export default function Navbar() {
   const supabase = createClient();
   const [user, setUser] = useState(false);
   const [menu, setOpenMenu] = useState(false);
-  // console.log(window.location.origin);
+  console.log(window.location.origin);
 
   async function getUser() {
     console.log("user from navbar");
