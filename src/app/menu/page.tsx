@@ -62,7 +62,7 @@ export default function () {
     fetchItems();
   }, []);
   return (
-    <div className="min-h-screen max-h-fit max-w-screen p-10 bg-background">
+    <div className="min-h-screen p-10 bg-background">
       <div className="mt-[5rem] md:text-base text-sm flex flex-col">
         <Breadcrumbs>{breadcrumbs}</Breadcrumbs>
         <h1 className="mt-10 text-7xl text-secondary font-semibold font-poppins">
