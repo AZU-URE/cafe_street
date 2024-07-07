@@ -9,7 +9,7 @@ export default function AuthButton() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider,
       options: {
-        redirectTo: `/menu`,
+        redirectTo: `https://cafe-street-chi.vercel.app/menu`,
       },
     });
     if (data) {
