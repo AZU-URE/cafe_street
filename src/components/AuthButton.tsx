@@ -4,12 +4,17 @@ export default function AuthButton() {
   const supabase = createClient();
 
   const onclickGoogle = async (provider: any) => {
-    console.log(provider);
+    var baseUrl;
+    if (window === undefined) {
+      baseUrl = "https://cafe-street-chi.vercel.app";
+    } else {
+      baseUrl = window.location.origin;
+    }
 
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider,
       options: {
-        redirectTo: `https://cafe-street-chi.vercel.app/menu`,
+        redirectTo: `${baseUrl}/menu`,
       },
     });
     if (data) {
