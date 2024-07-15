@@ -28,7 +28,7 @@ export default function Filter({ setList, Itemslist }: Ifilter) {
     rating: 1,
     priceRange: [0, 100],
     category: "all",
-    type: true,
+    type: false,
   });
 
   const clear = () => {
@@ -54,6 +54,10 @@ export default function Filter({ setList, Itemslist }: Ifilter) {
       if (filter.category != "all") {
         catConditions = el.category === filter.category;
       }
+      var NonVegCond = true;
+      if (filter?.type) {
+        NonVegCond = el.veg == filter.type;
+      }
 
       // console.log(priceCond, ratingCond, vegCond, catConditions);
       console.log(filter.priceRange[0], filter.priceRange[1]);
@@ -63,7 +67,7 @@ export default function Filter({ setList, Itemslist }: Ifilter) {
         el.price / 10 <= filter.priceRange[1] &&
         catConditions &&
         el.rating >= filter.rating &&
-        el.veg == filter.type
+        NonVegCond
       );
     });
     console.log(updatedList);
@@ -72,6 +76,22 @@ export default function Filter({ setList, Itemslist }: Ifilter) {
   };
   return (
     <div className="flex items-center justify-around flex-col space-y-5">
+      <div className="flex items-center space-x-3 justify-end w-full">
+        <Button
+          variant="contained"
+          className="bg-primary shadow-md hover:bg-feedbackCard hover:text-secondary"
+          onClick={clear}
+        >
+          Clear
+        </Button>
+        <Button
+          variant="contained"
+          className="bg-secondary/80 shadow-md hover:bg-feedbackCard hover:text-secondary"
+          onClick={apply}
+        >
+          Apply
+        </Button>
+      </div>
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center">
           <Switch
@@ -85,23 +105,10 @@ export default function Filter({ setList, Itemslist }: Ifilter) {
             checked={filter.type}
             color="warning"
           />
-          <h6>{filter.type ? "Veg" : "Non-Veg"}</h6>
-        </div>
-        <div className="flex items-center space-x-3">
-          <Button
-            variant="contained"
-            className="bg-primary shadow-md hover:bg-feedbackCard hover:text-secondary"
-            onClick={clear}
-          >
-            Clear
-          </Button>
-          <Button
-            variant="contained"
-            className="bg-secondary/80 shadow-md hover:bg-feedbackCard hover:text-secondary"
-            onClick={apply}
-          >
-            Apply
-          </Button>
+          <h6>
+            Veg-Mode{" "}
+            <span className="font-bold">{filter.type ? "ON" : "OFF"}</span>
+          </h6>
         </div>
       </div>
       <Accordion className="bg-background w-full">
