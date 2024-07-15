@@ -10,13 +10,20 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { createClient } from "@/utils/client";
 import CoffeeCard from "@/components/landingPage/coffeeCard";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Item } from "@/config/types";
+import { FilterState, Item } from "@/config/types";
 export default function () {
   const supabase = createClient();
   const [searchParam, setSearchParam] = useState("All");
   const [itemList, setItemList] = useState<Item[]>([]);
   const [filteredList, setFilteredList] = useState<Item[]>([]);
   const [sort, setSort] = useState("None");
+  const [filter, setFilter] = useState<FilterState>({
+    rating: 1,
+    priceRange: [0, 100],
+    category: "all",
+    type: false,
+    cat_carousel: "all",
+  });
   const breadcrumbs = [
     <Link
       underline="hover"
@@ -75,11 +82,21 @@ export default function () {
             <FilterAltIcon className="text-3xl mr-3 " />
             <h1 className="md:text-2xl font-poppins font-semibold">Filter</h1>
           </div>
-          <Filter setList={setFilteredList} Itemslist={itemList} />
+          <Filter
+            setList={setFilteredList}
+            Itemslist={itemList}
+            filter={filter}
+            setFilter={setFilter}
+          />
         </div>
-        <div className="flex items-center justify-between flex-col w-[65vw] m-[2rem] space-y-7 relative">
-          <FoodCategoryCarousel />
-          <div className="flex items-center justify-end w-full space-x-5">
+        <div className="flex items-center justify-between flex-col w-[65vw] mx-[2rem] space-y-7 relative">
+          <FoodCategoryCarousel
+            setList={setFilteredList}
+            Itemslist={itemList}
+            filter={filter}
+            setFilter={setFilter}
+          />
+          {/* <div className="flex items-center justify-end w-full space-x-5">
             <p className="font-poppins font-semibold text-secondary">Sort</p>
             <Select
               value={sort}
@@ -100,7 +117,7 @@ export default function () {
               <MenuItem value={"price-high"}>Price: High to Low</MenuItem>
               <MenuItem value={"price-low"}>Price: Low to High</MenuItem>
             </Select>
-          </div>
+          </div> */}
           <div className="grid grid-cols-3 gap-12 w-full">
             {filteredList.length != 0 ? (
               filteredList.map((el) => {
@@ -114,11 +131,11 @@ export default function () {
                 );
               })
             ) : itemList.length == 0 ? (
-              <div className="w-full absolute flex items-center justify-center bottom-[25%] ">
+              <div className="w-full absolute flex items-center justify-center bottom-[0] ">
                 <CircularProgress />
               </div>
             ) : (
-              <p className="w-full absolute flex items-center justify-center bottom-[20%] font-bold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
+              <p className="w-full absolute flex items-center justify-center bottom-[0] font-bold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
                 No items Match Your Result
               </p>
             )}

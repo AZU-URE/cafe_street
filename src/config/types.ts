@@ -13,4 +13,21 @@ export type Item = {
 export interface Ifilter {
   setList: (list: Item[]) => void;
   Itemslist: Item[];
+  filter: FilterState;
+  setFilter: (filter: any) => void;
 }
+
+export type CoffeeCardDetails = {
+  name: string;
+  price: number;
+  detail: string;
+  pic: string;
+};
+
+export type FilterState = {
+  rating: number;
+  priceRange: number[];
+  category: string;
+  type: boolean;
+  cat_carousel: string;
+};

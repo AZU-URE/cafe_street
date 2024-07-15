@@ -1,12 +1,11 @@
 import Image from "next/image";
-
-type details = {
-  name: string;
-  price: number;
-  detail: string;
-  pic: string;
-};
-export default function CoffeeCard({ name, price, detail, pic }: details) {
+import { CoffeeCardDetails } from "@/config/types";
+export default function CoffeeCard({
+  name,
+  price,
+  detail,
+  pic,
+}: CoffeeCardDetails) {
   return (
     <div className="bg-feedbackCardBorder/60 hover:bg-feedbackCard/90 p-6 rounded-lg hover:shadow-2xl hover:shadow-gray-600 hover:scale-105">
       <div className="flex items-center justify-center mb-5">

@@ -13,31 +13,25 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import Slider from "@mui/material/Slider";
-import { Ifilter, Item } from "@/config/types";
+import { Ifilter, Item, FilterState } from "@/config/types";
+import { ApplyFilter } from "@/helper/common";
 
-export default function Filter({ setList, Itemslist }: Ifilter) {
-  type Filter = {
-    rating: number;
-    priceRange: number[];
-    category: string;
-    type: boolean;
-  };
-
+export default function Filter({
+  setList,
+  Itemslist,
+  filter,
+  setFilter,
+}: Ifilter) {
   // type : veg/non-veg
-  const [filter, setFilter] = useState<Filter>({
-    rating: 1,
-    priceRange: [0, 100],
-    category: "all",
-    type: false,
-  });
 
   const clear = () => {
-    setFilter((prev) => ({
+    setFilter({
       rating: 1,
       priceRange: [0, 100],
       category: "all",
-      type: true,
-    }));
+      type: false,
+      cat_carousel: "all",
+    });
     setList(Itemslist);
   };
   function priceSliderLabel(value: number) {
@@ -49,29 +43,8 @@ export default function Filter({ setList, Itemslist }: Ifilter) {
   }, [Itemslist]);
 
   const apply = () => {
-    const updatedList = Itemslist.filter((el: Item) => {
-      var catConditions = true;
-      if (filter.category != "all") {
-        catConditions = el.category === filter.category;
-      }
-      var NonVegCond = true;
-      if (filter?.type) {
-        NonVegCond = el.veg == filter.type;
-      }
-
-      // console.log(priceCond, ratingCond, vegCond, catConditions);
-      console.log(filter.priceRange[0], filter.priceRange[1]);
-
-      return (
-        el.price / 10 >= filter.priceRange[0] &&
-        el.price / 10 <= filter.priceRange[1] &&
-        catConditions &&
-        el.rating >= filter.rating &&
-        NonVegCond
-      );
-    });
+    var updatedList = ApplyFilter(Itemslist, filter);
     console.log(updatedList);
-
     setList(updatedList);
   };
   return (
@@ -97,7 +70,7 @@ export default function Filter({ setList, Itemslist }: Ifilter) {
           <Switch
             inputProps={{ "aria-label": "type" }}
             onChange={(e) =>
-              setFilter((prev: Filter) => ({
+              setFilter((prev: FilterState) => ({
                 ...prev,
                 type: !prev.type,
               }))
@@ -123,7 +96,7 @@ export default function Filter({ setList, Itemslist }: Ifilter) {
             name="radio-buttons-group"
             value={filter.rating}
             onChange={(e) =>
-              setFilter((prev: Filter) => ({
+              setFilter((prev: any) => ({
                 ...prev,
                 rating: parseInt(e.target.value),
               }))
@@ -151,7 +124,7 @@ export default function Filter({ setList, Itemslist }: Ifilter) {
               onChange={(e: any) => {
                 console.log(e.target.value);
 
-                setFilter((prev: Filter) => ({
+                setFilter((prev: any) => ({
                   ...prev,
                   priceRange: e.target.value,
                 }));
@@ -175,7 +148,7 @@ export default function Filter({ setList, Itemslist }: Ifilter) {
             name="radio-buttons-group"
             value={filter.category}
             onChange={(e) =>
-              setFilter((prev: Filter) => ({
+              setFilter((prev: any) => ({
                 ...prev,
                 category: e.target.value,
               }))

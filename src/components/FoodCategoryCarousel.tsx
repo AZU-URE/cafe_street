@@ -1,6 +1,14 @@
+import { Ifilter } from "@/config/types";
 import Slider from "react-slick";
+import { ApplyFilter } from "@/helper/common";
+import { useEffect, useState } from "react";
 
-export default function FoodCategoryCarousel() {
+export default function FoodCategoryCarousel({
+  setList,
+  Itemslist,
+  filter,
+  setFilter,
+}: Ifilter) {
   const settings = {
     dots: false,
     speed: 500,
@@ -12,21 +20,60 @@ export default function FoodCategoryCarousel() {
     prevArrow: <SamplePrevArrow />,
     responsive: [],
   };
+
+  const [selected, setSelected] = useState(-1);
+
+  function applyItem(itemName: string, id: number) {
+    setSelected(id);
+    const filterItem = { ...filter, cat_carousel: itemName };
+    setFilter((prev: any) => ({ ...prev, cat_carousel: itemName }));
+    const updatedList = ApplyFilter(Itemslist, filterItem);
+    setList(updatedList);
+  }
+
+  useEffect(() => {
+    if (filter.cat_carousel === "all") setSelected(-1);
+  }, [filter]);
+
+  const list = [
+    "burger",
+    "chicken",
+    "dosa",
+    "northIndian",
+    "pizza",
+    "paneer",
+    "paratha",
+    "coffee",
+    "roll",
+    "thali",
+  ];
   return (
     <div className="w-full px-10 h-fit overflow-hidden ">
       <Slider {...settings}>
-        <div className="p-3 mx-3">
-          <img
-            src="./menu/categoryCard/burger.avif"
-            alt=""
-            className="rounded-full"
-          />
-        </div>
+        {list.map((el, id) => (
+          <div
+            className={`p-1 m-2 mx-3 overflow-clip rounded-full ${
+              selected == id ? "bg-primary" : ""
+            }`}
+          >
+            <img
+              src={`./menu/categoryCard/${el}.avif`}
+              alt=""
+              className="rounded-full h-1/2"
+              onClick={() => {
+                applyItem(el, id);
+              }}
+            />
+          </div>
+        ))}
+        {/*
         <div className="p-3 mx-3">
           <img
             src="./menu/categoryCard/chicken.avif"
             alt=""
             className="rounded-full"
+            onClick={() => {updateFilter("chicken") 
+              applyItem();}}
           />
         </div>
         <div className="p-3 mx-3">
@@ -34,6 +81,7 @@ export default function FoodCategoryCarousel() {
             src="./menu/categoryCard/dosa.avif"
             alt=""
             className="rounded-full"
+            onClick={() => updateFilter("dosa")}
           />
         </div>
         <div className="p-3 mx-3">
@@ -41,6 +89,7 @@ export default function FoodCategoryCarousel() {
             src="./menu/categoryCard/northIndian.avif"
             alt=""
             className="rounded-full"
+            onClick={() => updateFilter("northIndian")}
           />
         </div>
         <div className="p-3 mx-3">
@@ -48,6 +97,7 @@ export default function FoodCategoryCarousel() {
             src="./menu/categoryCard/paneer.avif"
             alt=""
             className="rounded-full"
+            onClick={() => updateFilter("paneer")}
           />
         </div>
         <div className="p-3 mx-3">
@@ -55,6 +105,7 @@ export default function FoodCategoryCarousel() {
             src="./menu/categoryCard/paratha.avif"
             alt=""
             className="rounded-full"
+            onClick={() => updateFilter("paratha")}
           />
         </div>
         <div className="p-3 mx-3 rounded-full">
@@ -62,6 +113,7 @@ export default function FoodCategoryCarousel() {
             src="./menu/categoryCard/pizza.avif"
             className="rounded-full"
             alt=""
+            onClick={() => updateFilter("pizza")}
           />
         </div>
         <div className="p-3 mx-3 overflow-clip rounded-full">
@@ -69,6 +121,7 @@ export default function FoodCategoryCarousel() {
             src="./menu/categoryCard/coffee.webp"
             alt=""
             className="rounded-full h-1/2"
+            onClick={() => updateFilter("coffee")}
           />
         </div>
         <div className="p-3 mx-3">
@@ -76,6 +129,7 @@ export default function FoodCategoryCarousel() {
             src="./menu/categoryCard/roll.avif"
             alt=""
             className="rounded-full"
+            onClick={() => updateFilter("roll")}
           />
         </div>
         <div className="p-3 mx-3">
@@ -83,8 +137,10 @@ export default function FoodCategoryCarousel() {
             src="./menu/categoryCard/thali.avif"
             alt=""
             className="rounded-full"
+            onClick={() => updateFilter("thali")}
           />
         </div>
+        */}
       </Slider>
     </div>
   );
