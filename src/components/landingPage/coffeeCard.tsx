@@ -24,8 +24,8 @@ export default function CoffeeCard({ name, price, detail, pic }: details) {
             {name}
           </p>
           <p className="font-bold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
+            <span className="pr-1">₹</span>
             {price}
-            <span className="pl-1">K</span>
           </p>
         </div>
         <div className="flex items-center justify-between">

@@ -10,16 +10,8 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { createClient } from "@/utils/client";
 import CoffeeCard from "@/components/landingPage/coffeeCard";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Item } from "@/config/types";
 export default function () {
-  type Item = {
-    id: number;
-    name: string;
-    price: number;
-    description: string;
-    image: string;
-    rating: number;
-    veg: boolean;
-  };
   const supabase = createClient();
   const [searchParam, setSearchParam] = useState("All");
   const [itemList, setItemList] = useState<Item[]>([]);
@@ -61,6 +53,8 @@ export default function () {
     }
     fetchItems();
   }, []);
+  // console.log(itemList);
+
   return (
     <div className="min-h-screen p-10 bg-background">
       <div className="mt-[5rem] md:text-base text-sm flex flex-col">
@@ -81,9 +75,9 @@ export default function () {
             <FilterAltIcon className="text-3xl mr-3 " />
             <h1 className="md:text-2xl font-poppins font-semibold">Filter</h1>
           </div>
-          <Filter />
+          <Filter setList={setFilteredList} Itemslist={itemList} />
         </div>
-        <div className="flex items-center justify-between flex-col w-[65vw] m-[2rem] space-y-7">
+        <div className="flex items-center justify-between flex-col w-[65vw] m-[2rem] space-y-7 relative">
           <FoodCategoryCarousel />
           <div className="flex items-center justify-end w-full space-x-5">
             <p className="font-poppins font-semibold text-secondary">Sort</p>
@@ -107,20 +101,26 @@ export default function () {
               <MenuItem value={"price-low"}>Price: Low to High</MenuItem>
             </Select>
           </div>
-          <div className="grid grid-cols-3 gap-12">
-            {itemList.length != 0 ? (
-              itemList.map((el) => {
+          <div className="grid grid-cols-3 gap-12 w-full">
+            {filteredList.length != 0 ? (
+              filteredList.map((el) => {
                 return (
                   <CoffeeCard
-                    name={el.name}
+                    name={el?.name}
                     price={el.price}
                     detail={el.description.substring(0, 30) + "..."}
                     pic={el.image}
                   />
                 );
               })
+            ) : itemList.length == 0 ? (
+              <div className="w-full absolute flex items-center justify-center bottom-[25%] ">
+                <CircularProgress />
+              </div>
             ) : (
-              <CircularProgress />
+              <p className="w-full absolute flex items-center justify-center bottom-[20%] font-bold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
+                No items Match Your Result
+              </p>
             )}
           </div>
         </div>
