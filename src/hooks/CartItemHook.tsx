@@ -15,14 +15,9 @@ export function CartItemProvider({ children }: any) {
 export function useCartItem() {
   const { cartItem, setCartItem } = useContext(cartItemContext);
   const updateStorageItem = (menuItem: CartItem) => {
-    console.log("1", cartItem);
+    // console.log("1", cartItem);
 
     const found = cartItem.some((el) => {
-      //   menuItem.some((item) => {
-      //     if (el.item.id == item.item.id) {
-      //       var index = menuItem.indexOf(item);
-      //     }
-      //   });
       if (menuItem.item.id === el.item.id) {
         if (menuItem.quantity > 0) {
           el.quantity = menuItem.quantity;
@@ -35,15 +30,16 @@ export function useCartItem() {
         return true;
       } else return false;
     });
-    console.log("2", cartItem);
+    // console.log("2", cartItem);
     if (!found) {
-      console.log("in not found");
+      // console.log("in not found");
       setCartItem([...cartItem, menuItem]);
       localStorage.setItem("cartItem", JSON.stringify([...cartItem, menuItem]));
     }
   };
   const fetchStorageItem = () => {
-    return localStorage.getItem("cartItem");
+    const item = JSON.parse(localStorage.getItem("cartItem") || "");
+    setCartItem(item);
   };
   return { cartItem, updateStorageItem, fetchStorageItem };
 }

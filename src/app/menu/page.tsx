@@ -17,6 +17,7 @@ export default function () {
   const [itemList, setItemList] = useState<Item[]>([]);
   const [filteredList, setFilteredList] = useState<Item[]>([]);
   const [sort, setSort] = useState("None");
+
   const [filter, setFilter] = useState<FilterState>({
     rating: 1,
     priceRange: [0, 100],

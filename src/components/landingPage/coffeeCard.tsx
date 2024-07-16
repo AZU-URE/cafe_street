@@ -3,7 +3,7 @@ import { CoffeeCardDetails } from "@/config/types";
 import { useCartItem } from "@/hooks/CartItemHook";
 import { useState, useEffect } from "react";
 export default function CoffeeCard({ item }: CoffeeCardDetails) {
-  const { updateStorageItem, cartItem } = useCartItem();
+  const { updateStorageItem, cartItem, fetchStorageItem } = useCartItem();
   const [quantity, setQuantity] = useState(0);
   const add = () => {
     setQuantity(quantity + 1);
@@ -19,8 +19,10 @@ export default function CoffeeCard({ item }: CoffeeCardDetails) {
     updateStorageItem({ item: item, quantity: 1 });
     setQuantity(1);
   };
+
   useEffect(() => {
-    console.log(cartItem);
+    const currentItem: any = cartItem.filter((el) => el.item.id === item?.id);
+    setQuantity(currentItem[0]?.quantity);
   }, [cartItem]);
   return (
     <div className="bg-feedbackCardBorder/60 hover:bg-feedbackCard/90 p-6 rounded-lg hover:shadow-2xl hover:shadow-gray-600 hover:scale-105">
