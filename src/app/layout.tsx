@@ -5,7 +5,7 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-
+import { CartItemProvider } from "@/hooks/CartItemHook";
 import Navbar from "@/components/navbar";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -24,7 +24,9 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
-      <body className={inter.className}>{children}`</body>
+      <body className={inter.className}>
+        <CartItemProvider>{children}</CartItemProvider>
+      </body>
     </html>
   );
 }

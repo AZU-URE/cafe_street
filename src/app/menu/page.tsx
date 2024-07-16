@@ -121,14 +121,7 @@ export default function () {
           <div className="grid grid-cols-3 gap-12 w-full">
             {filteredList.length != 0 ? (
               filteredList.map((el) => {
-                return (
-                  <CoffeeCard
-                    name={el?.name}
-                    price={el.price}
-                    detail={el.description.substring(0, 30) + "..."}
-                    pic={el.image}
-                  />
-                );
+                return <CoffeeCard item={el} key={el.id} />;
               })
             ) : itemList.length == 0 ? (
               <div className="w-full absolute flex items-center justify-center bottom-[0] ">
