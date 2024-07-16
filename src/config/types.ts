@@ -17,12 +17,9 @@ export interface Ifilter {
   setFilter: (filter: any) => void;
 }
 
-export type CoffeeCardDetails = {
-  name: string;
-  price: number;
-  detail: string;
-  pic: string;
-};
+export interface CoffeeCardDetails {
+  item: Item;
+}
 
 export type FilterState = {
   rating: number;
@@ -31,3 +28,13 @@ export type FilterState = {
   type: boolean;
   cat_carousel: string;
 };
+
+export type CartItem = {
+  item: Item;
+  quantity: number;
+};
+
+export interface CartItemProviderType {
+  cartItem: CartItem[];
+  setCartItem: (item: CartItem[]) => void;
+}

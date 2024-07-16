@@ -8,8 +8,10 @@ import { useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Menu, MenuItem, Avatar } from "@mui/material";
+import { useCartItem } from "@/hooks/CartItemHook";
 
 export default function Navbar() {
+  const { fetchStorageItem } = useCartItem();
   const router = useRouter();
   const supabase = createClient();
   const [user, setUser] = useState(false);
@@ -21,7 +23,8 @@ export default function Navbar() {
       data: { user },
     } = await supabase.auth.getUser();
     if (user) {
-      console.log(user);
+      // console.log(user);
+      fetchStorageItem();
       setUser(true);
     } else {
       setUser(false);

@@ -44,7 +44,7 @@ export default function Filter({
 
   const apply = () => {
     var updatedList = ApplyFilter(Itemslist, filter);
-    console.log(updatedList);
+    // console.log(updatedList);
     setList(updatedList);
   };
   return (
@@ -122,7 +122,7 @@ export default function Filter({
               getAriaLabel={() => "Temperature range"}
               value={filter.priceRange}
               onChange={(e: any) => {
-                console.log(e.target.value);
+                // console.log(e.target.value);
 
                 setFilter((prev: any) => ({
                   ...prev,

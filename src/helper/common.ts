@@ -15,7 +15,7 @@ export function ApplyFilter(Itemslist: Item[], filter: FilterState) {
     }
 
     // console.log(priceCond, ratingCond, vegCond, catConditions);
-    console.log(filter.priceRange[0], filter.priceRange[1]);
+    // console.log(filter.priceRange[0], filter.priceRange[1]);
 
     return (
       el.price / 10 >= filter.priceRange[0] &&
