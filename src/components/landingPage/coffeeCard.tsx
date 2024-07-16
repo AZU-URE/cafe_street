@@ -57,21 +57,25 @@ export default function CoffeeCard({ item }: CoffeeCardDetails) {
           >
             <Image src={`/cart_hero.svg`} width={18} height={17} alt="cart" />
           </div>
-        </div>
-        <div
-          className={`${
-            quantity > 0 ? "flex" : "hidden"
-          } w-full items-center justify-around mt-[1.5rem] rounded-xl border-[2px] border-primary bg-primary/10`}
-        >
-          <button className=" font-bold text-3xl w-full" onClick={reduce}>
-            -
-          </button>
-          <p className="font-semibold text-xl w-full text-center bg-secondary/30 py-[0.25rem] ">
-            {quantity}
-          </p>
-          <button className="font-bold text-3xl  w-full" onClick={add}>
-            +
-          </button>
+          <div
+            className={`${
+              quantity > 0 ? "flex" : "hidden"
+            } w-[40%] self-center items-center justify-around rounded-xl  bg-primary/10`}
+          >
+            <button
+              className=" text-primary font-bold text-xl w-full rounded-l-xl bg-primary/20 hover:bg-secondary/80"
+              onClick={reduce}
+            >
+              -
+            </button>
+            <p className="text-base w-full text-center  ">{quantity}</p>
+            <button
+              className=" text-xl font-bold text-primary w-full rounded-r-xl bg-primary/20 hover:bg-secondary/80"
+              onClick={add}
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
     </div>
