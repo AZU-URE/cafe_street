@@ -14,7 +14,7 @@ export default function home() {
       <Hero />
       <HowTo />
       <About />
-      <Menu />
+      {/* <Menu /> */}
       <Testimonial />
       <Newsletter />
     </div>
