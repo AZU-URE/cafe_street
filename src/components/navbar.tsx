@@ -47,7 +47,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className=" bg-background/50 h-fit flex items-center md:justify-evenly justify-between absolute p-6 w-full z-10">
+    <nav className=" bg-primary/10 h-fit flex items-center md:justify-evenly justify-between fixed p-6 w-full z-10 backdrop-blur-sm backdrop-filter">
       <Image src="/logo_coffe.svg" alt="logo" height={30} width={150} />
       <ul className="md:flex items-center space-x-5 font-poppins hidden lg:text-base text-sm">
         <li className="text-primary tracking-wide">About us</li>

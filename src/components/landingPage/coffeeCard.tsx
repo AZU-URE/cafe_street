@@ -2,6 +2,7 @@ import Image from "next/image";
 import { CoffeeCardDetails } from "@/config/types";
 import { useCartItem } from "@/hooks/CartItemHook";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 export default function CoffeeCard({ item }: CoffeeCardDetails) {
   const { updateStorageItem, cartItem, fetchStorageItem } = useCartItem();
   const [quantity, setQuantity] = useState(0);
@@ -37,8 +38,15 @@ export default function CoffeeCard({ item }: CoffeeCardDetails) {
       </div>
       <div className="flex flex-col">
         <div className="flex items-center justify-between mb-3">
-          <p className="font-semibold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
-            {item?.name}
+          <p className="font-semibold font-poppins lg:text-2xl md:text-xl text-base text-secondary hover:underline cursor-pointer">
+            <Link
+              href={{
+                pathname: `/menu/${item?.name}`,
+                query: { item: JSON.stringify(item) },
+              }}
+            >
+              {item?.name}
+            </Link>
           </p>
           <p className="font-bold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
             <span className="pr-1">₹</span>

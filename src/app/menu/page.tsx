@@ -1,5 +1,5 @@
 "use client";
-import { Breadcrumbs, Link, Typography } from "@mui/material";
+
 import { useState, useEffect } from "react";
 import Filter from "@/components/Filter";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
@@ -13,7 +13,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { FilterState, Item } from "@/config/types";
 export default function () {
   const supabase = createClient();
-  const [searchParam, setSearchParam] = useState("All");
+
   const [itemList, setItemList] = useState<Item[]>([]);
   const [filteredList, setFilteredList] = useState<Item[]>([]);
   const [sort, setSort] = useState("None");
@@ -25,29 +25,7 @@ export default function () {
     type: false,
     cat_carousel: "all",
   });
-  const breadcrumbs = [
-    <Link
-      underline="hover"
-      key="1"
-      color="inherit"
-      href="/"
-      // onClick={handleClick}
-    >
-      Home
-    </Link>,
-    <Link
-      underline="hover"
-      key="2"
-      color="inherit"
-      href="/menu"
-      // onClick={handleClick}
-    >
-      Menu
-    </Link>,
-    <Typography key="3" color="text.primary">
-      {searchParam}
-    </Typography>,
-  ];
+
   useEffect(() => {
     async function fetchItems() {
       const { data, error } = await supabase.from("items").select();
@@ -64,9 +42,8 @@ export default function () {
   // console.log(itemList);
 
   return (
-    <div className="min-h-screen p-10 bg-background">
-      <div className="mt-[5rem] md:text-base text-sm flex flex-col">
-        <Breadcrumbs>{breadcrumbs}</Breadcrumbs>
+    <div className="min-h-screen px-10 bg-background pb-10">
+      <div className=" md:text-base text-sm flex flex-col">
         <h1 className="mt-10 text-7xl text-secondary font-semibold font-poppins">
           A Cup of Joy, A Plate of Perfection
         </h1>
