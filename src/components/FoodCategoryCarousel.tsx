@@ -18,7 +18,18 @@ export default function FoodCategoryCarousel({
     arrows: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    responsive: [],
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false,
+          arrows: true,
+        },
+      },
+    ],
   };
 
   const [selected, setSelected] = useState(-1);
@@ -48,7 +59,7 @@ export default function FoodCategoryCarousel({
     "thali",
   ];
   return (
-    <div className="w-full px-10 h-fit overflow-hidden ">
+    <div className="w-full md:px-10 px-7 h-fit overflow-hidden ">
       <Slider {...settings}>
         {list.map((el, id) => (
           <div

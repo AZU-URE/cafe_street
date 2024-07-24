@@ -47,44 +47,42 @@ export default function signin() {
     }
   };
 
-  const onClickGoogle = async () => {};
   return (
-    <div className="flex flex-row-reverse items-center w-full min-h-screen">
+    <div className="flex lg:flex-row-reverse items-center w-screen min-h-screen overflow-x-hidden">
       <Toaster />
       <div
-        className="relative w-3/4 min-h-screen bg-cover bg-no-repeat bg-center"
+        className="relative w-3/4 min-h-screen bg-cover bg-no-repeat bg-center lg:flex hidden"
         style={{ backgroundImage: `url(/login.jpg)` }}
       ></div>
       <div
-        className="bg-background min-h-screen w-full flex flex-col items-center justify-stretch p-10 relative bg-contain bg-blend-overlay"
+        className="bg-background min-h-screen w-full flex flex-col items-center justify-stretch px-10 py-5 relative bg-contain bg-blend-overlay"
         style={{ backgroundImage: `url(/aboutUs_excludeBg.svg)` }}
       >
-        <div className="flex flex-row w-full items-center justify-evenly ">
-          <Image
+        <div className="flex flex-row w-full items-center justify-between ">
+          <img
             src="/logo_coffe.svg"
             alt="logo"
-            height={30}
-            width={150}
-            className=""
+            className="flex lg:hidden md:h-[30px] md:w-[150px] w-[7rem]"
           />
-          <div className="w-full text-secondary text-right font-poppins">
-            Don't have an Account ?
-            <div className="flex-col items-center inline-flex pl-2">
-              <Link href={`./signup`} className="font-semibold">
-                Sign Up
-              </Link>
-              <div className="rounded bg-primary min-h-[4px] w-full"></div>
+          <div
+            onClick={() => router.push("/cafe")}
+            className=" bg-primary/20 md:p-2 p-1 rounded-lg text-center text-secondary cursor-pointer font-poppins md:text-sm text-xs italic hover:bg-primary/50 md:w-fit w-[5rem] items-center justify-center "
+          >
+            Make Your Cafe's Menu
+            <div className="flex-col items-center inline-flex pl-[3px]">
+              <span className="font-semibold">Click Here!!</span>
+              {/* <div className="rounded bg-primary min-h-[4px] w-full"></div> */}
             </div>
           </div>
         </div>
         {/* form start */}
 
-        <div className="flex flex-col items-center justify-center w-full px-52 text-center font-poppins space-y-10 grow">
+        <div className="flex flex-col items-center justify-center lg:w-[50%] w-[80%] text-center font-poppins lg:space-y-10 space-y-5 mt-10 lg:mt-0">
           <div>
             <p className="text-3xl font-bold text-secondary mb-1">
               Welcome Back
             </p>
-            <p className="text-light">login and order a quick refill</p>
+            <p className="text-light">Order Our Finger-Licking Food AGAIN!!</p>
           </div>
           <div className="flex flex-col w-full items-center">
             <AuthButton />
@@ -164,10 +162,17 @@ export default function signin() {
               >
                 Sign In
               </button>
+              <div className="w-full text-secondary text-right font-poppins">
+                Don't have an Account ?
+                <div className="flex-col items-center inline-flex pl-2">
+                  <Link href={`./signup`} className="font-semibold">
+                    Sign Up
+                  </Link>
+                </div>
+              </div>
             </form>
           </div>
         </div>
-
         {/* form end */}
       </div>
     </div>

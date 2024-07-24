@@ -2,6 +2,7 @@ import Image from "next/image";
 import { CoffeeCardDetails } from "@/config/types";
 import { useCartItem } from "@/hooks/CartItemHook";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 export default function CoffeeCard({ item }: CoffeeCardDetails) {
   const { updateStorageItem, cartItem, fetchStorageItem } = useCartItem();
   const [quantity, setQuantity] = useState(0);
@@ -21,11 +22,13 @@ export default function CoffeeCard({ item }: CoffeeCardDetails) {
   };
 
   useEffect(() => {
-    const currentItem: any = cartItem.filter((el) => el.item.id === item?.id);
-    setQuantity(currentItem[0]?.quantity);
+    if (cartItem.length) {
+      const currentItem: any = cartItem.filter((el) => el.item.id === item?.id);
+      setQuantity(currentItem[0]?.quantity);
+    }
   }, [cartItem]);
   return (
-    <div className="bg-feedbackCardBorder/60 hover:bg-feedbackCard/90 p-6 rounded-lg hover:shadow-2xl hover:shadow-gray-600 hover:scale-105">
+    <div className="bg-feedbackCardBorder/60 hover:bg-feedbackCard/90 lg:p-6 p-3 rounded-lg hover:shadow-2xl hover:shadow-gray-600 hover:scale-105">
       <div className="flex items-center justify-center mb-5">
         <img
           src={`${item?.image}`}
@@ -37,16 +40,27 @@ export default function CoffeeCard({ item }: CoffeeCardDetails) {
       </div>
       <div className="flex flex-col">
         <div className="flex items-center justify-between mb-3">
-          <p className="font-semibold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
-            {item?.name}
+          <p className="font-semibold font-poppins lg:text-2xl md:text-xl text-base text-secondary hover:underline cursor-pointer">
+            <Link
+              href={{
+                pathname: `/menu/${item?.name}`,
+                query: { item: JSON.stringify(item) },
+              }}
+            >
+              {item?.name}
+            </Link>
           </p>
           <p className="font-bold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
             <span className="pr-1">₹</span>
             {item?.price}
           </p>
         </div>
-        <div className="flex items-center justify-between">
-          <p className="w-[146px] font-semibold font-poppins md:text-sm text-xs text-light">
+        <div
+          className={`flex  ${
+            quantity > 0 ? "lg:flex-row flex-col" : "flex-row"
+          } lg:space-y-0 space-y-3 items-center justify-between `}
+        >
+          <p className="lg:w-[146px] w-full font-semibold font-poppins md:text-sm text-xs text-light">
             {item?.description.substring(0, 30)}...
           </p>
           <div
@@ -60,7 +74,7 @@ export default function CoffeeCard({ item }: CoffeeCardDetails) {
           <div
             className={`${
               quantity > 0 ? "flex" : "hidden"
-            } w-[40%] self-center items-center justify-around rounded-xl  bg-primary/10`}
+            } lg:w-[40%] w-[80%] self-center items-center justify-around rounded-xl  bg-primary/10 `}
           >
             <button
               className=" text-primary font-bold text-xl w-full rounded-l-xl bg-primary/20 hover:bg-secondary/80"

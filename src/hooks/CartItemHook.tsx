@@ -15,30 +15,34 @@ export function CartItemProvider({ children }: any) {
 export function useCartItem() {
   const { cartItem, setCartItem } = useContext(cartItemContext);
   const updateStorageItem = (menuItem: CartItem) => {
-    // console.log("1", cartItem);
-
-    const found = cartItem.some((el) => {
-      if (menuItem.item.id === el.item.id) {
-        if (menuItem.quantity > 0) {
+    const item = localStorage.getItem("cartItem");
+    if (item) {
+      const found = cartItem.some((el) => {
+        if (menuItem.item.id === el.item.id) {
           el.quantity = menuItem.quantity;
-        } else {
-          var index = cartItem.indexOf(el);
-          cartItem.splice(index, 1);
-        }
-
-        localStorage.setItem("cartItem", JSON.stringify(cartItem));
-        return true;
-      } else return false;
-    });
-    // console.log("2", cartItem);
-    if (!found) {
-      // console.log("in not found");
-      setCartItem([...cartItem, menuItem]);
-      localStorage.setItem("cartItem", JSON.stringify([...cartItem, menuItem]));
+          const filteredCart = cartItem.filter((el) => el.quantity > 0);
+          setCartItem(filteredCart);
+          // console.log(cartItem);
+          localStorage.setItem("cartItem", JSON.stringify(filteredCart));
+          return true;
+        } else return false;
+      });
+      // console.log("2", cartItem);
+      if (!found) {
+        // console.log("in not found");
+        setCartItem([...cartItem, menuItem]);
+        localStorage.setItem(
+          "cartItem",
+          JSON.stringify([...cartItem, menuItem])
+        );
+      }
+    } else {
+      setCartItem([menuItem]);
+      localStorage.setItem("cartItem", JSON.stringify([menuItem]));
     }
   };
   const fetchStorageItem = () => {
-    const item = JSON.parse(localStorage.getItem("cartItem") || "");
+    const item = JSON.parse(localStorage.getItem("cartItem") || "{}");
     setCartItem(item);
   };
   return { cartItem, updateStorageItem, fetchStorageItem };
