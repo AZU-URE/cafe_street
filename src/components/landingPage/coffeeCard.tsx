@@ -28,7 +28,7 @@ export default function CoffeeCard({ item }: CoffeeCardDetails) {
     }
   }, [cartItem]);
   return (
-    <div className="bg-feedbackCardBorder/60 hover:bg-feedbackCard/90 p-6 rounded-lg hover:shadow-2xl hover:shadow-gray-600 hover:scale-105">
+    <div className="bg-feedbackCardBorder/60 hover:bg-feedbackCard/90 lg:p-6 p-3 rounded-lg hover:shadow-2xl hover:shadow-gray-600 hover:scale-105">
       <div className="flex items-center justify-center mb-5">
         <img
           src={`${item?.image}`}
@@ -55,8 +55,12 @@ export default function CoffeeCard({ item }: CoffeeCardDetails) {
             {item?.price}
           </p>
         </div>
-        <div className="flex items-center justify-between">
-          <p className="w-[146px] font-semibold font-poppins md:text-sm text-xs text-light">
+        <div
+          className={`flex  ${
+            quantity > 0 ? "lg:flex-row flex-col" : "flex-row"
+          } lg:space-y-0 space-y-3 items-center justify-between `}
+        >
+          <p className="lg:w-[146px] w-full font-semibold font-poppins md:text-sm text-xs text-light">
             {item?.description.substring(0, 30)}...
           </p>
           <div
@@ -70,7 +74,7 @@ export default function CoffeeCard({ item }: CoffeeCardDetails) {
           <div
             className={`${
               quantity > 0 ? "flex" : "hidden"
-            } w-[40%] self-center items-center justify-around rounded-xl  bg-primary/10`}
+            } lg:w-[40%] w-[80%] self-center items-center justify-around rounded-xl  bg-primary/10 `}
           >
             <button
               className=" text-primary font-bold text-xl w-full rounded-l-xl bg-primary/20 hover:bg-secondary/80"

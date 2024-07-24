@@ -17,7 +17,7 @@ export default function () {
   const [itemList, setItemList] = useState<Item[]>([]);
   const [filteredList, setFilteredList] = useState<Item[]>([]);
   const [sort, setSort] = useState("None");
-
+  const [showFilterOptn, setFilterOptn] = useState(false);
   const [filter, setFilter] = useState<FilterState>({
     rating: 1,
     priceRange: [0, 100],
@@ -44,10 +44,10 @@ export default function () {
   return (
     <div className="min-h-screen px-10 bg-background pb-10">
       <div className=" md:text-base text-sm flex flex-col">
-        <h1 className="mt-10 text-7xl text-secondary font-semibold font-poppins">
+        <h1 className="mt-10 lg:text-7xl md:text-5xl text-3xl text-secondary font-semibold font-poppins lg:text-left text-center">
           A Cup of Joy, A Plate of Perfection
         </h1>
-        <p className="mt-7 md:w-1/2 text-light">
+        <p className="mt-7 lg:w-1/2 text-light lg:text-left text-center md:text-base text-sm">
           Discover the perfect fusion of rich, aromatic coffees and freshly
           baked delights. Our carefully crafted blends and gourmet treats are
           designed to make every moment a little more special. Indulge in
@@ -55,7 +55,7 @@ export default function () {
         </p>
       </div>
       <div className="flex items-start justify-between mt-5 ">
-        <div className="md:w-1/4 border-x-feedbackCardBorder border-2 p-5 shadow-lg bg-feedbackCardBorder/60 rounded-2xl">
+        <div className=" lg:flex hidden lg:w-1/4 border-x-feedbackCardBorder border-2 p-5 shadow-lg bg-feedbackCardBorder/60 rounded-2xl">
           <div className="flex items-center flex-row mb-5 text-secondary">
             <FilterAltIcon className="text-3xl mr-3 " />
             <h1 className="md:text-2xl font-poppins font-semibold">Filter</h1>
@@ -67,13 +67,34 @@ export default function () {
             setFilter={setFilter}
           />
         </div>
-        <div className="flex items-center justify-between flex-col w-[65vw] mx-[2rem] space-y-7 relative">
+        <div className="flex items-end justify-between flex-col lg:w-[65vw] w-full lg:mx-[2rem] lg:space-y-7 relative">
           <FoodCategoryCarousel
             setList={setFilteredList}
             Itemslist={itemList}
             filter={filter}
             setFilter={setFilter}
           />
+          <div
+            className="lg:hidden flex items-center justify-end flex-row mb-5 text-secondary border-[1px] border-secondary rounded-md p-1"
+            onClick={() => {
+              setFilterOptn((prev) => !prev);
+            }}
+          >
+            <FilterAltIcon className="text-xl mr-3=1 " />
+            <h1 className="text-base font-poppins font-semibold">Filter</h1>
+          </div>
+
+          {showFilterOptn && (
+            <div className=" flex w-full border-x-feedbackCardBorder border-2 p-2 shadow-lg bg-feedbackCardBorder/60 rounded-2xl mb-5">
+              <div className="flex items-center flex-row mb-5 text-secondary"></div>
+              <Filter
+                setList={setFilteredList}
+                Itemslist={itemList}
+                filter={filter}
+                setFilter={setFilter}
+              />
+            </div>
+          )}
           {/* <div className="flex items-center justify-end w-full space-x-5">
             <p className="font-poppins font-semibold text-secondary">Sort</p>
             <Select
@@ -96,17 +117,17 @@ export default function () {
               <MenuItem value={"price-low"}>Price: Low to High</MenuItem>
             </Select>
           </div> */}
-          <div className="grid grid-cols-3 gap-12 w-full">
+          <div className="grid md:grid-cols-3 grid-cols-2 lg:gap-12 gap-4 w-full">
             {filteredList.length != 0 ? (
               filteredList.map((el) => {
                 return <CoffeeCard item={el} key={el.id} />;
               })
             ) : itemList.length == 0 ? (
-              <div className="w-full absolute flex items-center justify-center bottom-[0] ">
+              <div className="w-full absolute flex items-center justify-center -bottom-[2rem] ">
                 <CircularProgress />
               </div>
             ) : (
-              <p className="w-full absolute flex items-center justify-center bottom-[0] font-bold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
+              <p className="w-full absolute flex items-center justify-center -bottom-[2rem] font-bold font-poppins lg:text-2xl md:text-xl text-base text-secondary">
                 No items Match Your Result
               </p>
             )}

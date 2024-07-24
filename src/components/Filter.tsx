@@ -48,45 +48,45 @@ export default function Filter({
     setList(updatedList);
   };
   return (
-    <div className="flex items-center justify-around flex-col space-y-5">
+    <div className="flex items-center justify-around flex-col lg:space-y-5 space-y-3 w-full py-5 lg:py-0">
       <div className="flex items-center space-x-3 justify-end w-full">
+        <div className="flex lg:hidden items-center justify-between w-full">
+          <div className="flex items-center">
+            <Switch
+              inputProps={{ "aria-label": "type" }}
+              onChange={(e) =>
+                setFilter((prev: FilterState) => ({
+                  ...prev,
+                  type: !prev.type,
+                }))
+              }
+              checked={filter.type}
+              color="warning"
+            />
+            <h6 className="lg:text-base text-xs">
+              Veg-Mode{" "}
+              <span className="font-bold">{filter.type ? "ON" : "OFF"}</span>
+            </h6>
+          </div>
+        </div>
         <Button
           variant="contained"
-          className="bg-primary shadow-md hover:bg-feedbackCard hover:text-secondary"
+          className="bg-primary shadow-md hover:bg-feedbackCard hover:text-secondary lg:text-base text-xs"
           onClick={clear}
         >
           Clear
         </Button>
         <Button
           variant="contained"
-          className="bg-secondary/80 shadow-md hover:bg-feedbackCard hover:text-secondary"
+          className="bg-secondary/80 shadow-md hover:bg-feedbackCard hover:text-secondary lg:text-base text-xs"
           onClick={apply}
         >
           Apply
         </Button>
       </div>
-      <div className="flex items-center justify-between w-full">
-        <div className="flex items-center">
-          <Switch
-            inputProps={{ "aria-label": "type" }}
-            onChange={(e) =>
-              setFilter((prev: FilterState) => ({
-                ...prev,
-                type: !prev.type,
-              }))
-            }
-            checked={filter.type}
-            color="warning"
-          />
-          <h6>
-            Veg-Mode{" "}
-            <span className="font-bold">{filter.type ? "ON" : "OFF"}</span>
-          </h6>
-        </div>
-      </div>
       <Accordion className="bg-background w-full">
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className=" text-secondary/90 font-medium text-lg">
+          <Typography className=" text-secondary/90 font-medium lg:text-lg text-base">
             Rating
           </Typography>
         </AccordionSummary>
@@ -112,7 +112,7 @@ export default function Filter({
       </Accordion>
       <Accordion className="bg-background w-full items-center justify-center">
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className=" text-secondary/90 font-medium text-lg">
+          <Typography className=" text-secondary/90 font-medium lg:text-lg text-base">
             Price Range
           </Typography>
         </AccordionSummary>
@@ -138,7 +138,7 @@ export default function Filter({
       </Accordion>
       <Accordion className="bg-background w-full">
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className=" text-secondary/90 font-medium text-lg">
+          <Typography className=" text-secondary/90 font-medium lg:text-lg text-base">
             Category
           </Typography>
         </AccordionSummary>
