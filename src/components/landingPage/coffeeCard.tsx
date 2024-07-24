@@ -22,8 +22,10 @@ export default function CoffeeCard({ item }: CoffeeCardDetails) {
   };
 
   useEffect(() => {
-    const currentItem: any = cartItem.filter((el) => el.item.id === item?.id);
-    setQuantity(currentItem[0]?.quantity);
+    if (cartItem.length) {
+      const currentItem: any = cartItem.filter((el) => el.item.id === item?.id);
+      setQuantity(currentItem[0]?.quantity);
+    }
   }, [cartItem]);
   return (
     <div className="bg-feedbackCardBorder/60 hover:bg-feedbackCard/90 p-6 rounded-lg hover:shadow-2xl hover:shadow-gray-600 hover:scale-105">

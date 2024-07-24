@@ -56,7 +56,7 @@ export default function MenuItem() {
         </p>
         <p>{item?.description}</p>
         <div className="flex items-center space-x-[2rem]">
-          {quantity ? (
+          {quantity > 0 ? (
             <div
               className={` w-[50%] self-center items-center justify-around rounded-lg mt-[2rem]  bg-primary/10 flex`}
             >
