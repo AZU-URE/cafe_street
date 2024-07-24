@@ -42,7 +42,7 @@ export default function () {
   // console.log(itemList);
 
   return (
-    <div className="min-h-screen px-10 bg-background pb-10">
+    <div className="min-h-screen sm:px-10 px-5 bg-background pb-10">
       <div className=" md:text-base text-sm flex flex-col">
         <h1 className="mt-10 lg:text-7xl md:text-5xl text-3xl text-secondary font-semibold font-poppins lg:text-left text-center">
           A Cup of Joy, A Plate of Perfection
@@ -55,7 +55,7 @@ export default function () {
         </p>
       </div>
       <div className="flex items-start justify-between mt-5 ">
-        <div className=" lg:flex hidden lg:w-1/4 border-x-feedbackCardBorder border-2 p-5 shadow-lg bg-feedbackCardBorder/60 rounded-2xl">
+        <div className=" lg:flex flex-col hidden lg:w-1/4 border-x-feedbackCardBorder border-2 p-5 shadow-lg bg-feedbackCardBorder/60 rounded-2xl">
           <div className="flex items-center flex-row mb-5 text-secondary">
             <FilterAltIcon className="text-3xl mr-3 " />
             <h1 className="md:text-2xl font-poppins font-semibold">Filter</h1>
@@ -85,7 +85,7 @@ export default function () {
           </div>
 
           {showFilterOptn && (
-            <div className=" flex w-full border-x-feedbackCardBorder border-2 p-2 shadow-lg bg-feedbackCardBorder/60 rounded-2xl mb-5">
+            <div className="lg:hidden flex w-full border-x-feedbackCardBorder border-2 p-2 shadow-lg bg-feedbackCardBorder/60 rounded-2xl mb-5">
               <div className="flex items-center flex-row mb-5 text-secondary"></div>
               <Filter
                 setList={setFilteredList}
