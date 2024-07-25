@@ -38,3 +38,15 @@ export interface CartItemProviderType {
   cartItem: CartItem[];
   setCartItem: (item: CartItem[]) => void;
 }
+
+export type CafeFeature = {
+  img: string;
+  heading: string;
+  desc: string;
+};
+
+export type CartContactUs = {
+  name: string;
+  email: string;
+  message: string;
+};
