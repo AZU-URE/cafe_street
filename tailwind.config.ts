@@ -15,6 +15,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 
         coffee: "url('/public/menu/categoryCard/coffee.webp')",
+        product_landing_page: "url('/cafe/product_bg.jpg')",
       },
       colors: {
         primary: "#FF902B",
@@ -29,6 +30,21 @@ const config: Config = {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+      },
+      animation: {
+        slowBouce: "slow-bounce 1s infinite",
+      },
+      keyframes: {
+        slowBounce: {
+          "0% , 100%": {
+            transform: "translateY(-10%)",
+            AnimationTimeline: "cubic-bezier(0.8,0,1,1)",
+          },
+          "50%": {
+            transform: "none",
+            AnimationTimeline: "cubic-bezier(0,0,0.2,1)",
+          },
+        },
       },
     },
   },
