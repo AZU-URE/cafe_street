@@ -3,19 +3,39 @@ import Navbar from "@/components/cafe/Navbar";
 import { CafeFeature, CartContactUs } from "@/config/types";
 import Link from "next/link";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 export default function Home() {
   const [contactData, setContactData] = useState<CartContactUs>({
     name: "",
     email: "",
     message: "",
   });
-  const onContact = () => {
+  const onContact = async (e: any) => {
+    e.preventDefault();
     console.log(contactData);
+    const apiEndpoint = "/api/cafe/contactUs";
+    const respone = await fetch(apiEndpoint, {
+      method: "POST",
+      body: JSON.stringify(contactData),
+    });
+    // console.log(respone);
+
+    if (respone.status == 200) {
+      toast.success("Mail sent Successfully");
+    } else {
+      toast.error("Mail not Sent");
+    }
+    setContactData({
+      name: "",
+      email: "",
+      message: "",
+    });
   };
   return (
     <div className=" min-h-screen max-w-screen">
       <Navbar />
       <div className="bg-product_landing_page w-full h-screen bg-cover bg-no-repeat flex items-end pb-10 justify-center relative">
+        <Toaster />
         <button className="rounded-full bg-red-500 h-[6rem] w-[6rem] fixed bottom-[5%] right-[3%] font-bold text-white ring-red-500 ring-[1px] p-2">
           Go to Cafe Menu
         </button>
@@ -88,13 +108,15 @@ export default function Home() {
                 type="text"
                 placeholder="Your Name"
                 value={contactData.name}
+                required
                 onChange={(e) =>
                   setContactData((prev) => ({ ...prev, name: e.target.value }))
                 }
                 className="w-full rounded-full p-2 px-3 bg-zinc-200 text-black placeholder-black text-sm"
               ></input>
               <input
-                type="text"
+                required
+                type="email"
                 placeholder="Your Email"
                 value={contactData.email}
                 onChange={(e) =>
@@ -103,6 +125,7 @@ export default function Home() {
                 className="w-full rounded-full p-2 px-3 bg-zinc-200 text-black placeholder-black text-sm"
               ></input>
               <textarea
+                required
                 placeholder="Message"
                 value={contactData.message}
                 onChange={(e) =>
