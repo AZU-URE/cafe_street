@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <div className=" min-h-screen max-w-screen">
       <Navbar />
-      <div className="bg-product_landing_page w-full h-screen bg-cover bg-no-repeat flex items-end pb-10 justify-center relative">
+      <div className="bg-product_landing_page w-full h-screen bg-cover bg-no-repeat flex md:items-end items-center pb-10 justify-center relative">
         <Toaster />
         <button className="md:text-base text-xs rounded-full bg-red-500 md:h-[6rem] md:w-[6rem] w-[4.5rem] h-[4.5rem] fixed bottom-[5%] right-[3%] font-bold text-white ring-red-500 ring-[1px] p-2 z-10">
           Go to Cafe Menu
