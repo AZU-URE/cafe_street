@@ -39,24 +39,24 @@ export default function Home() {
         <button className="rounded-full bg-red-500 h-[6rem] w-[6rem] fixed bottom-[5%] right-[3%] font-bold text-white ring-red-500 ring-[1px] p-2">
           Go to Cafe Menu
         </button>
-        <div className="w-[30rem] h-[30rem] rounded-full  bg-slate-500/30 backdrop-blur-md flex items-center justify-center flex-col relative">
-          <h1 className="text-[4.5rem] font-bold text-blue-700 font-serif">
+        <div className="lg:w-[30rem] lg:h-[30rem] w-[23rem] h-[23rem] rounded-full  bg-slate-500/30 backdrop-blur-md flex items-center justify-center flex-col relative">
+          <h1 className="lg:text-[4.5rem] md:text-[3.5rem] font-bold text-blue-700 font-serif">
             Cafe Street
           </h1>
-          <p className="text-[1.25rem] font-bold text-white text-center">
+          <p className="lg:text-[1.25rem] md:text-[1rem] font-bold text-white text-center">
             Simplify Your Management, Delight Your Customers
           </p>
-          <button className="mt-[5rem] bottom-[5rem] p-3 w-[50%] rounded-lg bg-blue-800 hover:bg-blue-700 hover:-translate-y-2 text-white">
+          <button className="lg:mt-[5rem] mt-[2rem] bottom-[5rem] lg:p-3 p-2 w-[50%] rounded-lg bg-blue-800 hover:bg-blue-700 hover:-translate-y-2 text-white">
             Manage Menu
           </button>
         </div>
       </div>
-      <section className="py-[8rem] px-[5rem] flex items-center justify-center space-x-[5rem] max-w-full bg-gradient-to-b from-red-400/20 to-blue-200">
+      <section className="lg:py-[8rem] py-[5rem] lg:px-[5rem] px-[2rem] flex items-center justify-center space-x-[5rem] max-w-full bg-gradient-to-b from-red-400/20 to-blue-200">
         <div className="flex items-start justify-center flex-col space-y-4 w-[40%]">
-          <h1 className="text-[2.5rem] text-blue-700 ">
+          <h1 className="lg:text-[2.5rem] text-[2rem] text-blue-700 ">
             Fastest way to set up your Menu
           </h1>
-          <p className="text-slate-500 w-[80%] text-[1rem]">
+          <p className="text-slate-500 lg:w-[80%] w-[90%] lg:text-[1rem] text-[0.9rem]">
             With{" "}
             <span className="italic font-semibold text-slate-600">
               Cafe Street
@@ -66,13 +66,15 @@ export default function Home() {
         </div>
         <img src="/cafe/illus_website.png" className="w-[30%]"></img>
       </section>
-      <section className="flex items-center justify-center flex-col bg-gradient-to-b from-blue-200 to-blue-200/60 py-[5rem] px-[8rem]">
-        <h1 className="text-[2.5rem] text-blue-700 mb-4">Features</h1>
-        <p className=" w-[20%] text-center text-slate-500 mb-[5rem]">
+      <section className="flex items-center justify-center flex-col bg-gradient-to-b from-blue-200 to-blue-200/60 lg:py-[8rem] py-[5rem] lg:px-[5rem] px-[2rem]">
+        <h1 className="lg:text-[2.5rem] text-[2rem] text-blue-700 mb-4">
+          Features
+        </h1>
+        <p className=" lg:w-[20%] w-[40%] lg:text-[1rem] text-[0.9rem] text-center text-slate-500 mb-[5rem]">
           An app to ease the heat off cafe owners and make managing your cafe a
           breeze
         </p>
-        <div className="grid grid-cols-3 gap-[8rem] w-full px-[4rem]">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 lg:gap-[8rem] gap-[6rem] w-full px-[4rem] place-content-center">
           <FeatItem
             img="/cafe/tablet.png"
             heading="Digital Menu"
@@ -88,20 +90,27 @@ export default function Home() {
             heading="Online Payment"
             desc="Streamline transactions with secure and convenient online payment options."
           ></FeatItem>
+          <FeatItem
+            img="/cafe/online-payment.png"
+            heading="Online Payment"
+            desc="Streamline transactions with secure and convenient online payment options."
+          ></FeatItem>
         </div>
       </section>
-      <section className="flex items-center justify-center flex-col bg-gradient-to-b from-blue-200/60 to-white py-[5rem] px-[8rem]">
-        <h1 className="text-[2.5rem] text-blue-700 mb-4">Contact Us</h1>
-        <p className=" text-center text-slate-500 mb-[2rem]">
+      <section className="flex items-center justify-center flex-col bg-gradient-to-b from-blue-200/60 to-white lg:py-[8rem] py-[5rem] lg:px-[5rem] px-[2rem]">
+        <h1 className="lg:text-[2.5rem] text-[2rem] text-blue-700 mb-4">
+          Contact Us
+        </h1>
+        <p className=" text-center text-slate-500 mb-[2rem] lg:text-[1rem] text-[0.9rem]">
           We are here to help you with seamless onboarding.
         </p>
-        <div className="w-full px-[4rem] flex items-center justify-around space-x-[10rem]">
-          <div className="p-[2rem] shadow-2xl rounded-xl bg-white items-center justify-center flex flex-col w-[30%]">
+        <div className="w-full lg:px-[4rem] flex items-center justify-around lg:space-x-[10rem] space-x-[5rem]">
+          <div className="lg:p-[2rem] p-[1.25rem] shadow-2xl rounded-xl bg-white items-center justify-center flex flex-col lg:w-[30%]">
             <p className="mb-[2rem] font-bold text-blue-700 text-lg">
               Get In Touch
             </p>
             <form
-              className="w-full flex flex-col items-start justify-center space-y-[2rem]"
+              className="w-full flex flex-col items-start justify-center lg:space-y-[2rem] space-y-[1.5rem]"
               onSubmit={onContact}
             >
               <input
@@ -166,12 +175,12 @@ export default function Home() {
 
 function FeatItem({ img, heading, desc }: CafeFeature) {
   return (
-    <div className="rounded-2xl px-[1.5rem] py-[1rem] shadow-2xl flex flex-col items-center space-y-5 ring-[1px] bg-white/50 hover:-translate-y-2 backdrop-blur-sm backdrop-filter">
+    <div className="rounded-2xl px-[1.5rem] py-[1rem] shadow-2xl flex flex-col items-center lg:space-y-5 space-y-3 ring-[1px] bg-white/50 hover:-translate-y-2 backdrop-blur-sm backdrop-filter">
       <div className="rounded-full bg-blue-300/30 p-3 mt-2">
         <img src={img}></img>
       </div>
-      <h1 className="text-xl font-bold text-blue-700">{heading}</h1>
-      <p className="text-center">{desc}</p>
+      <h1 className="lg:text-xl text-lg font-bold text-blue-700">{heading}</h1>
+      <p className="text-center lg:text-base text-sm">{desc}</p>
     </div>
   );
 }
