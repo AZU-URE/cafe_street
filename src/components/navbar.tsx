@@ -86,13 +86,13 @@ export default function Navbar() {
           ) : (
             <div className="flex items-center space-x-6">
               <button
-                onClick={() => router.push("./signin")}
+                onClick={() => router.push("/signin")}
                 className="lg:text-base text-sm font-poppins tracking-wide text-white bg-secondary rounded-full p-2 px-5 md:flex hidden items-center justify-center"
               >
                 SignIn
               </button>
               <button
-                onClick={() => router.push("./signup")}
+                onClick={() => router.push("/signup")}
                 className="lg:text-base text-sm font-poppins font-bold tracking-wide text-secondary bg-primary rounded-full p-2 px-5 md:flex hidden items-center justify-center"
               >
                 SignUp

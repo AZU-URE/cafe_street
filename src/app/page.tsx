@@ -3,8 +3,10 @@ import Navbar from "@/components/cafe/Navbar";
 import { CafeFeature, CartContactUs } from "@/config/types";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 export default function Home() {
+  const router = useRouter();
   const [contactData, setContactData] = useState<CartContactUs>({
     name: "",
     email: "",
@@ -36,7 +38,10 @@ export default function Home() {
       <Navbar />
       <div className="bg-product_landing_page w-full h-screen bg-cover bg-no-repeat flex md:items-end items-center pb-10 justify-center relative">
         <Toaster />
-        <button className="md:text-base text-xs rounded-full bg-red-500 md:h-[6rem] md:w-[6rem] w-[4.5rem] h-[4.5rem] fixed bottom-[5%] right-[3%] font-bold text-white ring-red-500 ring-[1px] p-2 z-10">
+        <button
+          onClick={() => router.push("/search")}
+          className="md:text-base text-xs rounded-full bg-red-500 md:h-[6rem] md:w-[6rem] w-[4.5rem] h-[4.5rem] fixed bottom-[5%] right-[3%] font-bold text-white ring-red-500 ring-[1px] p-2 z-10"
+        >
           Go to Cafe Menu
         </button>
         <div className="lg:w-[30rem] lg:h-[30rem] w-[23rem] h-[23rem] rounded-full  bg-slate-500/30 backdrop-blur-md flex items-center justify-center flex-col relative">
