@@ -16,6 +16,7 @@ const config: Config = {
 
         coffee: "url('/public/menu/categoryCard/coffee.webp')",
         product_landing_page: "url('/cafe/product_bg.jpg')",
+        cafe_login_bg: "url('/cafe/login/loginBg.jpg')",
       },
       colors: {
         primary: "#FF902B",

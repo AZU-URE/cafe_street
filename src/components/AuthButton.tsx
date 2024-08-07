@@ -24,28 +24,29 @@ export default function AuthButton() {
     }
   };
   return (
-    <div className="flex mb-1 space-x-5 w-full items-center justify-center">
+    <div className="flex flex-col p-5 mb-1 w-full items-center justify-center space-y-5 h-full">
       <button
         onClick={() => onclickGoogle("google")}
-        className="rounded-md bg-feedbackCardBorder/40 py-2 px-6 border-2 border-light font-semibold text-sm flex items-center justify-evenly"
+        className="rounded-md bg-red-600 py-[0.5rem] text-white w-[70%] font-semibold text-lg flex items-center justify-center space-x-[1rem]"
       >
         <Image
           src="/google.png"
-          height={20}
-          width={20}
+          height={30}
+          width={30}
           alt="google"
-          className="mr-2"
+          className="mr-2 bg-white rounded-full p-1"
         />
         Google
       </button>
+      <div className="text-white font-bold text-xl">Or</div>
       <button
         onClick={() => onclickGoogle("twitter")}
-        className="rounded-md bg-feedbackCardBorder/40 py-2 px-6 border-2 border-light font-semibold text-sm flex items-center justify-evenly"
+        className="rounded-md bg-blue-500 py-[0.5rem] text-white w-[70%] font-semibold text-lg flex items-center justify-center space-x-[1rem]"
       >
         <Image
           src="/twitter.png"
-          height={20}
-          width={20}
+          height={30}
+          width={30}
           alt="google"
           className="mr-2"
         />

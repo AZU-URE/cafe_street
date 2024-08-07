@@ -50,3 +50,16 @@ export type CartContactUs = {
   email: string;
   message: string;
 };
+
+export type OnboardingFormType = {
+  img: string;
+  cafeName: string;
+  name: string;
+  contact: string | undefined;
+  address1: string;
+  address2: string;
+  landmark: string;
+  pincode: string | undefined;
+  city: string;
+  state: string;
+};

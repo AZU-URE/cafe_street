@@ -51,7 +51,10 @@ export default function Home() {
           <p className="lg:text-[1.25rem] md:text-[1rem] font-bold text-white text-center">
             Simplify Your Management, Delight Your Customers
           </p>
-          <button className="lg:mt-[5rem] mt-[2rem] bottom-[5rem] lg:p-3 p-2 w-[50%] rounded-lg bg-blue-800 hover:bg-blue-700 hover:-translate-y-2 text-white">
+          <button
+            onClick={() => router.push("/cafeSignin")}
+            className="lg:mt-[5rem] mt-[2rem] bottom-[5rem] lg:p-3 p-2 w-[50%] rounded-lg bg-blue-800 hover:bg-blue-700 hover:-translate-y-2 text-white"
+          >
             Manage Menu
           </button>
         </div>
