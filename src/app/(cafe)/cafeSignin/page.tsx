@@ -18,6 +18,17 @@ export default function cafeSignin() {
             className="flex flex-col h-full items-start justify-center p-5 w-full"
             onSubmit={proceed}
           >
+            {!signin ? (
+              <div>
+                <label className="text-white mb-1">Your Name</label>
+                <input
+                  type="text"
+                  required
+                  className="bg-transparent border-2 border-white rounded-xl p-2 placeholder:text-slate-600/50 placeholder:text-sm focus:border-2 focus:outline-none focus:ring-0 focus:border-white mb-5 w-full"
+                  placeholder="Garima Mangal"
+                ></input>
+              </div>
+            ) : null}
             <label className="text-white mb-1">Email</label>
             <input
               type="email"
